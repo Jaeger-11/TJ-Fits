@@ -1,0 +1,40 @@
+export default {
+    title: "Products",
+    name: "products",
+    type: "document",
+    fields: [
+        {
+            title: 'Product Name',
+            name: 'name',
+            type: 'string'
+        },
+        {
+            title: 'Product Images',
+            type: 'array',
+            name: 'images',
+            of: [{type: 'image'}]
+        },
+        {
+            name: 'description',
+            type: 'text',
+            title: 'Product Description'
+        },
+        {
+            title: 'Product Slug',
+            name: 'slug',
+            type: 'slug',
+            source: 'title'
+        },
+        {
+            name: 'price',
+            title: 'Product Price',
+            type: 'number'
+        },
+        {
+            name: 'category',
+            title: 'Product Category',
+            type: "reference",
+            to: [{type: "category"}]
+        }
+    ]
+}
