@@ -1,18 +1,20 @@
-import { getAccessories } from "../sanity-utils";
+import { getAccessories, getFeatured } from "../sanity-utils";
 import { feature } from "../interfaces/interface";
 import Image from "next/image";
+import Link from "next/link";
 const Accessories = async () => {
     const data = await getAccessories();
-    console.log(data)
+    const extra = await getFeatured();
   return (
-    <section className="p-4 lg:py-8">
+    <>
+     <section className="p-4 lg:py-8">
         <div className="md:w-4/5 mx-auto">
             <h3 className="capitalize styreneBold">Check out our Accessories</h3>
             <section className="grid lg:grid-cols-5 gap-8">
                 {data.slice(0,5).map((accessory: feature) => {
-                    const {name, price, imageUrl, _id} = accessory;
+                    const {name, price, imageUrl, _id, slug} = accessory;
                     return (
-                        <div key={_id} className="my-8 opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer">
+                        <Link href={`/product/${slug}`} key={_id} className="my-8 opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer">
                             <Image 
                             src={imageUrl}
                             alt={name}
@@ -24,12 +26,33 @@ const Accessories = async () => {
                                 <p className="capitalize text-sm">{name}</p>
                                 <h4 className=" font-bold text-sm">N{price}</h4>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })}
             </section>
         </div>
     </section>
+    
+    <section className="p-4 lg:py-8 bg-white">
+        <div className="md:w-4/5 mx-auto grid grid-cols-2 gap-4 my-4">
+            {extra.slice(3,5).map((ext:feature) => {
+                const {name, imageUrl, _id} = ext;
+                return (
+                    <div key={_id} className="relative aspect-square cursor-pointer overflow-hidden">
+                        <Image
+                        src={imageUrl}
+                        alt={name}
+                        width={500}
+                        height={500}
+                        className="h-full w-full object-cover object-center hover:scale-110 transition-all"
+                        />
+                        <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
+                    </div>
+                )
+            })}
+        </div>
+    </section>
+    </>
   )
 }
 

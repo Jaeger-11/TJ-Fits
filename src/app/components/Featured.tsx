@@ -13,7 +13,7 @@ const Featured = async () => {
             </p>
             <div className="flex gap-8 justify-center my-12 features">
                 {
-                    data.map((feature:feature) => {
+                    data.slice(0,3).map((feature:feature) => {
                         const { _id, imageUrl, name} = feature;
                         return <div className="relative aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all opacity-80 shadow-sm hover:opacity-100" key={_id}>
                             <Image

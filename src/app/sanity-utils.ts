@@ -15,8 +15,8 @@ export const getAllProducts = async () => {
         _id,
         price,
         name,
-        "slug": slug.current
-        images
+        "slug": slug.current,
+        "imageUrl": images[0].asset->url
     }`
     const data = await client.fetch(query)
     return data
@@ -35,8 +35,10 @@ export const getProductsPreview = async () => {
 }
 
 export const getFeatured = async () => {
-    let query = `*[_type == "featured"]{
-        _id, name, "imageUrl": image.asset->url
+    let query = `*[_type == "featured"] | order(_createdAt asc){
+        _id, 
+        name, 
+        "imageUrl": image.asset->url
     }`
     const data = await client.fetch(query)
     return data
@@ -45,8 +47,17 @@ export const getFeatured = async () => {
 export const getAccessories = async () => {
     const data = await client.fetch(`
         *[_type == "products" && category._ref == "482f30eb-8d77-44f8-b155-046b4d14241f"]{
-            _id, price, "imageUrl":images[0].asset->url, name
+            _id, price, "imageUrl":images[0].asset->url, name, "slug":slug.current
         }
     `)
+    return data
+}
+
+export const getProduct = async (slug:string) => {
+    const data = await client.fetch(`
+        *[_type == "products" && slug.current == "${slug}"][0]{
+            _id, price, images, name, "slug":slug.current, description, "category": category->category
+        }
+    `);
     return data
 }

@@ -18,7 +18,7 @@ const Footer = () => {
                     <h3 className="font-bold text-xs text-gray-500 uppercase">Company</h3>
                     <ul className="flex flex-col gap-3 mt-4 text-sm">
                         <Link href="/">About us</Link>
-                        <Link href='/'>Contact us</Link>
+                        <Link href='/contact'>Contact us</Link>
                         <Link href="/">Privacy Policy</Link>
                         <Link href="/">Terms and Conditions</Link>
                     </ul>

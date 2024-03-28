@@ -10,16 +10,16 @@ const Navbar = () => {
                 <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>
 
                 <ul className='hidden styrene400 text-gray-500 lg:flex menu-items items-center gap-8 capitalize text-sm'>
-                    <li>shop</li>
+                    <li><Link href="/products">shop</Link></li>
                     <li>new arrivals</li>
-                    <li>contact</li>
+                    <li><Link href="/contact">contact</Link></li>
                 </ul>
             </section>
 
             <section className='hidden lg:flex items-center gap-6'>
-                <div className='text-green-600 cursor-pointer text-sm'>CART(3)</div>
+                <div className='text-black cursor-pointer text-sm'>CART(3)</div>
                 <div className='flex-item-center gap-4'>
-                    <button className='px-6 py-2 bg-green-600 text-white font-bold rounded-sm hover:scale-105 transition-all'>LOGIN</button>
+                    <button className='px-4 py-2 bg-black text-sm text-white font-medium rounded-sm hover:scale-105 transition-all'>LOGIN</button>
                     <p className='cursor-pointer hidden'>SIGN OUT</p>
                 </div>
             </section>
@@ -34,7 +34,7 @@ const Navbar = () => {
                     </ul>
                     <div className='text-green-600 cursor-pointer'>CART(3)</div>
                     <div className='flex justify-end gap-4'>
-                        <button className='px-6 py-2 bg-green-600 text-white font-bold rounded-sm hover:scale-105 transition-all'>LOGIN</button>
+                        <button className='px-6 py-2 bg-black text-white font-bold rounded-sm hover:scale-105 transition-all'>LOGIN</button>
                         <p className='cursor-pointer hidden'>SIGN OUT</p>
                     </div>
                 </section>

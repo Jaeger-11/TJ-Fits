@@ -23,7 +23,9 @@ export default {
             title: 'Product Slug',
             name: 'slug',
             type: 'slug',
-            source: 'title'
+            options: {
+                source: "name"
+            }
         },
         {
             name: 'price',
