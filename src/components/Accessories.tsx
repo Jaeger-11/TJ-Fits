@@ -1,5 +1,5 @@
-import { getAccessories, getFeatured, currencyFormat } from "../sanity-utils";
-import { feature } from "../interfaces/interface";
+import { getAccessories, getFeatured, currencyFormat } from "../app/sanity-utils";
+import { feature } from "../app/interfaces/interface";
 import Image from "next/image";
 import Link from "next/link";
 const Accessories = async () => {

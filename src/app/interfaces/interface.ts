@@ -19,4 +19,5 @@ export interface product{
 export interface searchparams{
     price?:string;
     date?:string;
+    category?:string;
 }

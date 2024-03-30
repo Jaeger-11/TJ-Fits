@@ -24,9 +24,9 @@ const Sort = () => {
                 <path d="M9.50002 12.8333L19 3.33334L16.625 0.958336L9.49998 8.08338L2.37499 0.958386L-4.15256e-07 3.33339L9.50002 12.8333Z" fill="#000"></path>
             </svg>
         </div>
-        <ul className={`w-full flex-col gap-1.5 text-gray-500 bg-white p-2 transition-all my-2 ${menu ? 'h-max': ' h-0 p-0 pointer-events-none text-transparent'}`}>
+        <ul className={`w-full flex-col gap-1.5 text-gray-500 bg-white transition-all my-2 ${menu ? 'h-max p-2': 'h-0 p-0 pointer-events-none text-transparent'}`}>
             {sortOptions.map((option) => {
-                return <div className="py-1 cursor-pointer" onClick={() => selectOption(option)}>{option.name}</div>
+                return <div key={option.value} className="py-1 cursor-pointer" onClick={() => selectOption(option)}>{option.name}</div>
             })}
         </ul>
     </section>

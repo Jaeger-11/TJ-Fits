@@ -1,5 +1,5 @@
-import { forUrl } from "../../../sanity/lib/client"
-import { getHeroContent, getHeroImages } from "../sanity-utils";
+import { forUrl } from "../../sanity/lib/client"
+import { getHeroContent, getHeroImages } from "../app/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 

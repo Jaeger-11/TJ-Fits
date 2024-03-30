@@ -1,7 +1,7 @@
-import { feature } from "../interfaces/interface";
+import { feature } from "../app/interfaces/interface";
 import Link from "next/link";
 import Image from "next/image";
-import { currencyFormat } from "../sanity-utils";
+import { currencyFormat } from "../app/sanity-utils";
 
 export default function Product(product:feature) {
     const {name, _id, imageUrl, price, slug} = product;

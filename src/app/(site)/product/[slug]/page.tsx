@@ -1,5 +1,5 @@
-import Back from "@/app/components/Back"
-import ImageGallery from "@/app/components/ImageGallery"
+import Back from "@/components/Back"
+import ImageGallery from "@/components/ImageGallery"
 import { product } from "@/app/interfaces/interface"
 import { getProduct, currencyFormat } from "@/app/sanity-utils"
 

@@ -1,5 +1,5 @@
-import { getFeatured } from "../sanity-utils";
-import { feature } from "../interfaces/interface";
+import { getFeatured } from "../app/sanity-utils";
+import { feature } from "../app/interfaces/interface";
 import Image from "next/image";
 
 const Featured = async () => {

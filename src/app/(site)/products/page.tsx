@@ -1,13 +1,14 @@
 import { getAllProducts, getAllCategories } from "@/app/sanity-utils";
-import ProductsData from "@/app/components/Products";
-import Categories from "@/app/components/Categories";
-import Sort from "@/app/components/Sort";
+import ProductsData from "@/components/Products";
+import Categories from "@/components/Categories";
+import Sort from "@/components/Sort";
 import { searchparams } from "@/app/interfaces/interface";
 
 export default async function Products(params: {
     params:{},
     searchParams: searchparams
 }){
+    console.log(params.searchParams)
     const allProducts = await getAllProducts(params.searchParams);
     const categories = await getAllCategories();
     let products = allProducts;

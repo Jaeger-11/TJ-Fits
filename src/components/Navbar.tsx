@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 const Navbar = () => {
     const pathname = usePathname()
-    console.log(pathname)
     const [isMenu, setIsMenu] = useState(false)
   return (
     <nav className='p-4 bg-white sticky top-0 z-50 shadow-sm'>

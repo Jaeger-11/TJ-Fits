@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import { forUrl } from "../../../sanity/lib/client";
+import { forUrl } from "../../sanity/lib/client";
 import { useState } from "react";
 export default function ImageGallery({images}:any){
     const [selected, setSelected] = useState(images[0]);
