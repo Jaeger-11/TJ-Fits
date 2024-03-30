@@ -34,7 +34,7 @@ const Footer = () => {
                 <form >
                     <input className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
                     <p className="text-sm my-2">By signing up, you agree to our <Link href='/' className="underline">Privacy Policy</Link> and <Link href='/' className="underline">Terms of Service.</Link> </p>
-                    <button className="px-4 py-3 bg-black text-white text-sm hover:scale-105 transition-all">Subscribe</button>
+                    <button className="px-4 py-3 bg-black text-white text-sm hover:scale-90 transition-all">Subscribe</button>
                 </form>
             </section>
         </footer>

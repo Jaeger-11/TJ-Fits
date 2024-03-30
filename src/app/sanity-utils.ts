@@ -1,4 +1,5 @@
-import { client } from "../../sanity/lib/client"
+import { client } from "../../sanity/lib/client";
+import { searchparams } from "./interfaces/interface";
 
 export const getHeroContent = async () => {
     let query = '*[_type == "herotexts"][0]'
@@ -10,8 +11,11 @@ export const getHeroImages = async () => {
     const data = await client.fetch(q)
     return data
 }
-export const getAllProducts = async () => {
-    let query = `*[_type == "products"]{
+export const getAllProducts = async (searchparams:searchparams) => {
+    const priceOrder = searchparams.price ? `| order(price ${searchparams.price})` : ""
+    const dateOrder = searchparams.date ? `| order(createdAt ${searchparams.date})` : ""
+    const order = `${priceOrder} ${dateOrder}`
+    let query = `*[_type == "products"] ${order}{
         _id,
         price,
         name,
@@ -46,7 +50,16 @@ export const getFeatured = async () => {
 
 export const getAccessories = async () => {
     const data = await client.fetch(`
-        *[_type == "products" && category._ref == "482f30eb-8d77-44f8-b155-046b4d14241f"]{
+        *[_type == "products" && "Accessories" in categories[]->category]{
+            _id, price, "imageUrl":images[0].asset->url, name, "slug":slug.current
+        }
+    `)
+    return data
+}
+
+export const getNewArrivals = async () => {
+    const data = await client.fetch(`
+        *[_type == "products" && "New Arrivals" in categories[]->category]{
             _id, price, "imageUrl":images[0].asset->url, name, "slug":slug.current
         }
     `)
@@ -56,8 +69,19 @@ export const getAccessories = async () => {
 export const getProduct = async (slug:string) => {
     const data = await client.fetch(`
         *[_type == "products" && slug.current == "${slug}"][0]{
-            _id, price, images, name, "slug":slug.current, description, "category": category->category
+            _id, price, images, name, "slug":slug.current, description, "category": (categories[]->category)[0]
         }
     `);
     return data
+}
+
+export const getAllCategories = async () => {
+    const data = await client.fetch(`
+    *[_type == "category"]{category}
+    `)
+    return data
+}
+
+export const currencyFormat = (price: number | undefined) => {
+    return new Intl.NumberFormat('en-US').format(typeof(price) === 'number' ? price : 0)
 }

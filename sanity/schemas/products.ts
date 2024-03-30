@@ -1,3 +1,5 @@
+import { defineArrayMember } from "sanity";
+
 export default {
     title: "Products",
     name: "products",
@@ -33,10 +35,17 @@ export default {
             type: 'number'
         },
         {
-            name: 'category',
+            name: 'categories',
             title: 'Product Category',
-            type: "reference",
-            to: [{type: "category"}]
+            type: "array",
+            of: [
+                defineArrayMember({
+                    name: "category",
+                    title: "Product Category",
+                    type: "reference",
+                    to: [{type: "category"}]
+                })
+            ]
         }
     ]
 }

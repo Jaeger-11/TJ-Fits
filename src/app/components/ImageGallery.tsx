@@ -24,7 +24,7 @@ export default function ImageGallery({images}:any){
                     )
                 })}
             </section>
-            <section className="flex-1 overflow-hidden rounded-md">
+            <section className="flex-1 overflow-hidden rounded-md bg-[#F5F4F4]">
                 <Image
                 width={500}
                 height={500}

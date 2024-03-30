@@ -1,4 +1,4 @@
-import { getAccessories, getFeatured } from "../sanity-utils";
+import { getAccessories, getFeatured, currencyFormat } from "../sanity-utils";
 import { feature } from "../interfaces/interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,7 +24,7 @@ const Accessories = async () => {
                             />
                             <div className="mt-2">
                                 <p className="capitalize text-sm">{name}</p>
-                                <h4 className=" font-bold text-sm">N{price}</h4>
+                                <h4 className=" font-bold text-sm">&#8358;{currencyFormat(price)}</h4>
                             </div>
                         </Link>
                     )
