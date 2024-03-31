@@ -48,10 +48,10 @@ body{
 }
 
 .features div:last-of-type{
-  margin-top: 2rem;
+  @apply lg:mt-[2rem]
 }
 .features div:nth-child(2){
-  margin-top: 1rem;
+  @apply lg:mt-[1rem]
 }
 
 .menu-items li{

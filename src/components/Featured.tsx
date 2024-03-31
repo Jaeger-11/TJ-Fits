@@ -5,17 +5,17 @@ import Image from "next/image";
 const Featured = async () => {
     const data = await getFeatured();
   return (
-    <div className="p-4 bg-white md:py-8">
+    <div className="p-4 py-8 lg:py-4 bg-white md:py-8">
         <section className="lg:w-4/5 mx-auto">
             <p className="styrene400 md:w-2/3 lg:w-1/2 line150 text-sm">
             Elevate your lifestyle with a more intelligent, superior wardrobe. 
             Our range is crafted sustainably with longevity in mind.
             </p>
-            <div className="flex gap-8 justify-center my-12 features">
+            <div className="flex flex-col md:flex-row gap-4 lg:gap-8 justify-center my-6 lg:my-12 features">
                 {
                     data.slice(0,3).map((feature:feature) => {
                         const { _id, imageUrl, name} = feature;
-                        return <div className="relative aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all opacity-80 shadow-sm hover:opacity-100" key={_id}>
+                        return <div className="relative aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
                             <Image
                             src={imageUrl}
                             alt={name}
