@@ -1,7 +1,6 @@
 import { getNewArrivals } from "@/app/sanity-utils";
 import { feature } from "@/app/interfaces/interface";
 import Product from "@/components/Product";
-import Back from "@/components/Back";
 
 export default async function NewArrivals() {
     const newArrivals = await getNewArrivals();

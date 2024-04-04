@@ -26,6 +26,7 @@ export interface searchparams{
 
 export interface cart{
     isCartOpen: boolean;
-    cartItems: Array<feature>,
-    totalCartItems: number
+    cartItems: Array<feature>;
+    totalCartItems: number;
+    subTotal: number;
 }

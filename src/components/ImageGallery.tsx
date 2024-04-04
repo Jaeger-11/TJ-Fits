@@ -11,7 +11,6 @@ export default function ImageGallery({images}:any){
                     return (
                         <div key={id} className="bg-[#F5F4F4] w-1/5 lg:w-auto rounded-md overflow-hidden">
                             <Image 
-                            key={id}
                             width={200}
                             height={200}
                             className="shadow-sm cursor-pointer w-full opacity-80 aspect-square object-cover object-center hover:scale-110 transition-all"
