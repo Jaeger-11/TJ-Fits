@@ -5,11 +5,11 @@ import { useState } from "react";
 export default function ImageGallery({images}:any){
     const [selected, setSelected] = useState(images[0]);
     return (
-        <div className="flex gap-4">
-            <section className="flex lg:max-w-20 flex-col gap-2 overflow-hidden">
+        <div className="flex flex-col-reverse lg:flex-row gap-4">
+            <section className="flex lg:max-w-20 lg:flex-col gap-2 overflow-hidden">
                 {images.map((image:any, id: number) => {
                     return (
-                        <div className="bg-[#F5F4F4] rounded-md overflow-hidden">
+                        <div key={id} className="bg-[#F5F4F4] w-1/5 lg:w-auto rounded-md overflow-hidden">
                             <Image 
                             key={id}
                             width={200}

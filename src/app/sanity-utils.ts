@@ -12,12 +12,13 @@ export const getHeroImages = async () => {
     return data
 }
 export const getAllProducts = async (searchparams:searchparams) => {
-    const {price, date, category} = searchparams
+    const {price, date, category, search} = searchparams
     const priceOrder = price ? `| order(price ${price})` : ""
     const dateOrder = date ? `| order(_createdAt ${date})` : ""
     const categoryFilter = category ? ` && "${category}" in categories[]->category` : ""
+    const searchFilter = search ? `&& name match "${search}*"` : ""
     const order = `${priceOrder} ${dateOrder}`
-    let query = `*[_type == "products" ${categoryFilter}] ${order}{
+    let query = `*[_type == "products" ${categoryFilter} ${searchFilter} ] ${order}{
         _id,
         price,
         name,

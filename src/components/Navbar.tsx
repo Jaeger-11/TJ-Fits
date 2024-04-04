@@ -2,7 +2,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useAppSelector } from "@/lib/hooks";
+
 const Navbar = () => {
+    const { totalCartItems } = useAppSelector((state) => state.cart)
     const pathname = usePathname()
     const [isMenu, setIsMenu] = useState(false)
   return (
@@ -19,7 +22,7 @@ const Navbar = () => {
             </section>
 
             <section className='hidden lg:flex items-center gap-6'>
-                <div className='text-black cursor-pointer text-sm'>CART(0)</div>
+                <Link href="/cart" className='text-black cursor-pointer text-sm'>CART({totalCartItems})</Link>
                 <div className='flex-item-center gap-4'>
                     <button className='px-4 py-2 bg-black text-sm text-white font-medium rounded-sm hover:scale-90 transition-all'>LOGIN</button>
                     <p className='cursor-pointer hidden'>SIGN OUT</p>
@@ -34,7 +37,7 @@ const Navbar = () => {
                         <li><Link href="/new-arrivals" className={pathname === '/new-arrivals' ? 'text-black underline' : 'text-inherit transition-all'}>new arrivals</Link></li>
                         <li><Link href="/contact" className={pathname === '/contact' ? 'text-black underline' : 'text-inherit transition-all'}>contact</Link></li>
                     </ul>
-                    <div className='text-green-600 cursor-pointer'>CART(3)</div>
+                    <Link href='/cart' className='text-black cursor-pointer'>CART({totalCartItems})</Link>
                     <div className='flex justify-end gap-4'>
                         <button className='px-6 py-2 bg-black text-white font-bold rounded-sm hover:scale-105 transition-all'>LOGIN</button>
                         <p className='cursor-pointer hidden'>SIGN OUT</p>

@@ -3,7 +3,8 @@ export interface feature {
     _id: string;
     imageUrl: string
     price? : number,
-    slug? : string
+    slug? : string,
+    quantity? : number
 }
 
 export interface product{
@@ -20,4 +21,11 @@ export interface searchparams{
     price?:string;
     date?:string;
     category?:string;
+    search?:string
+}
+
+export interface cart{
+    isCartOpen: boolean;
+    cartItems: Array<feature>,
+    totalCartItems: number
 }
