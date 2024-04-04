@@ -1,4 +1,4 @@
-export default () => {
+export default function Contact(){
     return (
         <div className="p-4">
             <section className="lg:w-4/5 mx-auto">

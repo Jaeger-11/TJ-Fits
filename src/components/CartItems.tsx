@@ -14,6 +14,9 @@ const CartItems = () => {
                 )
             })}
         </section>
+        <div>
+            
+        </div>
     </div>
   )
 }

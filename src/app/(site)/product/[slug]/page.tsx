@@ -4,9 +4,9 @@ import { product } from "@/app/interfaces/interface"
 import { getProduct, currencyFormat } from "@/app/sanity-utils"
 import AddButton from "@/components/AddButton"
 
-export default async ({params}: {
+export default async function Product({params}: {
     params: {slug: string}
-}) => {
+}) {
     const product = await getProduct(params.slug)
     const {name, description, images, price, category}:product = product;
   return (

@@ -1,6 +1,6 @@
 import CartItems from "@/components/CartItems"
 
-export default () => {
+export default function Page(){
     return (
         <div className="my-4 p-4">
            <section className="lg:w-4/5 mx-auto">
