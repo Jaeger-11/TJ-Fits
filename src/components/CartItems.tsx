@@ -17,7 +17,7 @@ const CartItems = () => {
         </section>
         <div className="text-right my-4 mt-8">
             <h3 className="styrene400">SubTotal &nbsp; &#8358;{currencyFormat(subTotal)}</h3>
-            <p className="text-xs my-2 text-gray-500">Taxes and Shipping calculated at Checkout</p>
+            <p className="text-[10px] md:text-xs my-2 text-gray-500">Taxes and Shipping calculated at Checkout</p>
 
             <div className="flex justify-between mt-2">
                 <Link href='/products' className="underline text-xs">Back To Shopping</Link>

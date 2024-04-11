@@ -30,3 +30,15 @@ export interface cart{
     totalCartItems: number;
     subTotal: number;
 }
+
+export interface inputProps{
+    email: string;
+    password: string;
+    username?: string;
+}
+
+export interface user{
+    username: string;
+    uid: string;
+    email: string;
+}
