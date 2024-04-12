@@ -18,7 +18,7 @@ const AddButton = (data:{product:product}) => {
         }
     }
   return (
-    <button onClick={add} className="px-3 py-2 text-xs capitalize bg-black text-white rounded-md transition-all hover:scale-90">Add to cart</button>
+    <button onClick={add} className="px-4 py-2.5 text-xs capitalize bg-black text-white rounded-md transition-all hover:scale-90">Add to cart</button>
   )
 }
 

@@ -2,7 +2,8 @@ import Back from "@/components/Back"
 import ImageGallery from "@/components/ImageGallery"
 import { product } from "@/app/interfaces/interface"
 import { getProduct, currencyFormat } from "@/app/sanity-utils"
-import AddButton from "@/components/AddButton"
+import AddButton from "@/components/AddButton";
+import Link from "next/link";
 
 export default async function Product({params}: {
     params: {slug: string}
@@ -34,9 +35,9 @@ export default async function Product({params}: {
                             <p>1-2 days delivery across Nigeria</p>
                         </div>
                     </section>
-                    <section className="flex gap-2">
+                    <section className="flex gap-2 items-center">
                         <AddButton product={product}/>
-                        <button className=" text-xs capitalize transition-all text-gray-500 hover:text-black">Checkout now</button>
+                        <Link href='/cart' className=" text-xs capitalize transition-all text-gray-500 hover:text-black">Checkout now</Link>
                     </section>
                     <p className="line150 text-sm">{description ? description : ""}</p>
                 </article>
