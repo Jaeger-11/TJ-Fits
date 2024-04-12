@@ -5,14 +5,21 @@ import Image from "next/image";
 import { currencyFormat } from "../app/sanity-utils";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
+import { useRouter } from "next/navigation";
 
 export default function Product(product:feature) {
+    const router = useRouter()
     const dispatch = useAppDispatch();
+    const { uid } = useAppSelector((state) => state.user)
     const { cartItems } = useAppSelector((state) => state.cart)
     const {name, _id, imageUrl, price, slug} = product;
     const add = () => {
         if(cartItems.filter((item) => item._id === _id).length === 0){
-            dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
+            if(uid.length) dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
+                else { 
+            alert("Sign In / Create Account To Add to Cart!")
+            router.push('/authentication')
+        } 
         }
     }
     return(

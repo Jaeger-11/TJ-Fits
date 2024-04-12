@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/lib/hooks";
 import { logOut } from "@/lib/features/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { setUser } from "@/lib/features/userSlice";
+import { clearCart } from "@/lib/features/cartSlice";
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -30,12 +31,12 @@ const Navbar = () => {
     const logout = () => {
         signOut(auth).then(() => {
         // Sign-out successful.
-        dispatch(logOut())
+            dispatch(clearCart())
+            dispatch(logOut())
         }).catch((error) => {
         // An error happened.
         console.log(error)
         });
-        dispatch(logOut());
     }
 
   return (

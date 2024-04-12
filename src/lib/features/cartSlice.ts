@@ -33,6 +33,11 @@ const cartSlice = createSlice({
             })
             state.subTotal = total;
         },
+        clearCart: (state) => { 
+            state.cartItems = [] 
+            state.totalCartItems = 0;
+            state.subTotal = 0;
+        },
         increaseQuantity: (state,{payload}) => {
             state.cartItems = state.cartItems.map((item) => {
                 if(item._id === payload){
@@ -64,6 +69,6 @@ const cartSlice = createSlice({
     }
 })
 
-export const {showCart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity} = cartSlice.actions;
+export const {showCart, addToCart, clearCart, removeFromCart, increaseQuantity, decreaseQuantity} = cartSlice.actions;
 
 export default cartSlice.reducer

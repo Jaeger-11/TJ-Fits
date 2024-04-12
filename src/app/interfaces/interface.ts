@@ -42,3 +42,12 @@ export interface user{
     uid: string;
     email: string;
 }
+
+export interface infoData{
+    contact: string;
+    alternative: string;
+    firstName: string;
+    lastName: string;
+    state: string;
+    address: string;
+}

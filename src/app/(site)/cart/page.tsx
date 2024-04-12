@@ -1,5 +1,4 @@
 import CartItems from "@/components/CartItems";
-import Back from "@/components/Back";
 
 export default function Page(){
     return (
