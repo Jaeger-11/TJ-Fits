@@ -41,6 +41,7 @@ export interface user{
     username: string;
     uid: string;
     email: string;
+    contactShippingInfo: infoData
 }
 
 export interface infoData{

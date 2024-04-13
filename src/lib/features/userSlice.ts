@@ -7,7 +7,15 @@ import { user } from "@/app/interfaces/interface";
 const initialState:user = {
     username: auth.currentUser?.displayName || "",
     uid: auth.currentUser?.uid || "",
-    email: auth.currentUser?.email || ""
+    email: auth.currentUser?.email || "",
+    contactShippingInfo: {
+        contact: "",
+        alternative: "",
+        firstName: "",
+        lastName: "",
+        state: "",
+        address: ""
+    }
 }
 
 const userSlice = createSlice({
@@ -23,10 +31,14 @@ const userSlice = createSlice({
             state.username = '' 
             state.email = ''
             state.uid = ''
+        }, 
+        updateInfo: (state, {payload}) => {
+            console.log(payload)
+            state.contactShippingInfo = payload
         }
     }
 })
 
-export const {setUser, logOut} = userSlice.actions
+export const {setUser, logOut, updateInfo} = userSlice.actions
 
 export default userSlice.reducer
