@@ -1,10 +1,14 @@
 "use client";
 import Link from 'next/link';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import { currencyFormat } from '@/app/sanity-utils';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+import { clearCart } from '@/lib/features/cartSlice';
+import { useRouter } from 'next/navigation';
 
 const Pay = () => {
+    const dispatch = useAppDispatch();
+    const router = useRouter();
     const { contactShippingInfo, uid, email } = useAppSelector((state) => state.user);
     const { subTotal } = useAppSelector((state) => state.cart)
     const { contact, alternative, firstName, lastName, state, address } = contactShippingInfo;
@@ -23,7 +27,7 @@ const Pay = () => {
             name: `${firstName} ${lastName}`,
         },
         customizations: {
-            title: 'TJ-Fits Purchase',
+            title: 'TJ-Fits',
             description: 'Payment for items in cart',
             logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
         },
@@ -36,6 +40,11 @@ const Pay = () => {
         handleFlutterPayment({
             callback: (response) => {
               console.log(response);
+              if(response.status === "successful"){
+                alert("Payment Successful");
+                router.push('/')
+                dispatch(clearCart());
+              }
               closePaymentModal();
             },
             onClose: () => {},
