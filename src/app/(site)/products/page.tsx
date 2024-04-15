@@ -9,7 +9,6 @@ export default async function Products(params: {
     params:{},
     searchParams: searchparams
 }){
-    console.log(params.searchParams)
     const products = await getAllProducts(params.searchParams);
     const categories = await getAllCategories();
 

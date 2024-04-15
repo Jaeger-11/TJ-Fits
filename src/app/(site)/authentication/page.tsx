@@ -7,6 +7,7 @@ import { inputProps } from "@/app/interfaces/interface";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
 import { setUser, logOut } from "@/lib/features/userSlice";
+import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
 const Authenticate = () => {
     const dispatch = useAppDispatch();
@@ -37,6 +38,10 @@ const Authenticate = () => {
         signInWithEmailAndPassword(auth, userData.email, userData.password)
           .then((userCredential) => {
             setErrorInfo("")
+            dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
             router.push('/')
           })
           .catch((error) => {
@@ -65,6 +70,10 @@ const Authenticate = () => {
                     });
                 }
                 setErrorInfo("")
+                dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
                 router.push('/')
             })
             .catch((error) => {
@@ -85,7 +94,10 @@ const Authenticate = () => {
             const token = credential?.accessToken;
             // The signed-in user info.
             const user = result.user;
-            console.log(user)
+            dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
             router.push('/')
             // IdP data available using getAdditionalUserInfo(result)
             // ...

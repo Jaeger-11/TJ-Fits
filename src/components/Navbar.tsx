@@ -8,8 +8,9 @@ import { signOut } from "firebase/auth";
 import { useAppDispatch } from "@/lib/hooks";
 import { logOut } from "@/lib/features/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
-import { setUser } from "@/lib/features/userSlice";
+import { setUser, updateNotification, closeNotification } from "@/lib/features/userSlice";
 import { clearCart } from "@/lib/features/cartSlice";
+import Toast from "./Toast";
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -33,6 +34,10 @@ const Navbar = () => {
         // Sign-out successful.
             dispatch(clearCart())
             dispatch(logOut())
+            dispatch(updateNotification({text:"User Successfully Signed!", imageUrl: 'show'}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
         }).catch((error) => {
         // An error happened.
         console.log(error)
@@ -42,6 +47,7 @@ const Navbar = () => {
   return (
     <nav className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
         <div className=' lg:w-4/5 mx-auto justify-between flex flex-row-reverse items-center lg:flex-row'>
+            <Toast/>
             <Link href='/cart' className='text-black cursor-pointer text-sm lg:hidden'>CART({totalCartItems})</Link>
             <section className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] lg:static lg:translate-x-0 lg:translate-y-0  justify-between flex-item-center lg:gap-[10vw]'>
                 <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>

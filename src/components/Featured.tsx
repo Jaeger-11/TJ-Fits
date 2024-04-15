@@ -5,7 +5,7 @@ import Image from "next/image";
 const Featured = async () => {
     const data = await getFeatured();
   return (
-    <div className="p-4 py-8 lg:py-4 bg-white md:py-8">
+    <div className="p-4 py-8 bg-white md:py-8">
         <section className="lg:w-4/5 mx-auto">
             <p className="styrene400 md:w-2/3 lg:w-1/2 line150 text-sm">
             Elevate your lifestyle with a more intelligent, superior wardrobe. 

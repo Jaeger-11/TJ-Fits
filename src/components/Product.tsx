@@ -6,6 +6,7 @@ import { currencyFormat } from "../app/sanity-utils";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useRouter } from "next/navigation";
+import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
 export default function Product(product:feature) {
     const router = useRouter()
@@ -15,9 +16,17 @@ export default function Product(product:feature) {
     const {name, _id, imageUrl, price, slug} = product;
     const add = () => {
         if(cartItems.filter((item) => item._id === _id).length === 0){
-            if(uid.length) dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
-                else { 
-            alert("Sign In / Create Account To Add to Cart!")
+            if(uid.length){
+                dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
+                dispatch(updateNotification({imageUrl, header:name, text: "Added To Cart"}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
+            } else { 
+            dispatch(updateNotification({text:"Sign In / Create Account To Add to Cart!"}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
             router.push('/authentication')
         } 
         }

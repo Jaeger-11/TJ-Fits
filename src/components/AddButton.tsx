@@ -1,9 +1,10 @@
 "use client";
 import { product } from "@/app/interfaces/interface";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { addToCart, showCart } from "@/lib/features/cartSlice";
+import { addToCart } from "@/lib/features/cartSlice";
 import { forUrl } from "../../sanity/lib/client";
 import { useRouter } from "next/navigation";
+import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
 const AddButton = (data:{product:product}) => {
   const router = useRouter();
@@ -17,10 +18,16 @@ const AddButton = (data:{product:product}) => {
             if(imageUrl){
               if (uid.length > 0){
                 dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
-                console.log(cartItems, totalCartItems)
+                dispatch(updateNotification({header:name, text: "Added To Cart", imageUrl}))
+                setTimeout(() => {
+                  dispatch(closeNotification())
+              }, 2000);
               }  else { 
-                  alert("Sign In / Create Account To Add to Cart!")
-                  router.push('/authentication')
+                dispatch(updateNotification({text:"Sign In / Create Account To Add to Cart!"}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
+                router.push('/authentication') 
               } 
             }
         }

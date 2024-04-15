@@ -27,7 +27,6 @@ const ShippingInfo = () => {
     const submitInfo = () => {
         const { contact, alternative, firstName, lastName, state, address } = info
         if( contact && alternative && firstName && lastName && state && address ){
-            console.log(info);
             dispatch(updateInfo(info));
             router.push('/cart/pay')
         } else setErrorText("All fields are required!")

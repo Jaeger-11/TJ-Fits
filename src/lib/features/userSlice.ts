@@ -1,6 +1,5 @@
 "use client";
 import { auth } from "@/database/config";
-import { onAuthStateChanged } from "firebase/auth";
 import { createSlice } from "@reduxjs/toolkit";
 import { user } from "@/app/interfaces/interface";
 
@@ -15,6 +14,12 @@ const initialState:user = {
         lastName: "",
         state: "",
         address: ""
+    },
+    notify: false,
+    toastContent: {
+        imageUrl: "",
+        header: "",
+        text: ""
     }
 }
 
@@ -33,12 +38,29 @@ const userSlice = createSlice({
             state.uid = ''
         }, 
         updateInfo: (state, {payload}) => {
-            console.log(payload)
             state.contactShippingInfo = payload
+        },
+        closeNotification: (state) => {
+            state.notify = false;
+            state.toastContent = {
+                imageUrl: "",
+                header: "",
+                text: ""
+            }
+        },
+        updateNotification: (state, {payload}) => {
+            state.notify = false;
+            state.toastContent = {
+                imageUrl: "",
+                header: "",
+                text: ""
+            }
+            state.toastContent = payload;
+            state.notify = true;
         }
     }
 })
 
-export const {setUser, logOut, updateInfo} = userSlice.actions
+export const {setUser, logOut, updateInfo, closeNotification, updateNotification} = userSlice.actions
 
 export default userSlice.reducer

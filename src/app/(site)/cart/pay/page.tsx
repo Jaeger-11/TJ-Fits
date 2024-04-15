@@ -5,6 +5,7 @@ import { currencyFormat } from '@/app/sanity-utils';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import { clearCart } from '@/lib/features/cartSlice';
 import { useRouter } from 'next/navigation';
+import { updateNotification, closeNotification } from '@/lib/features/userSlice';
 
 const Pay = () => {
     const dispatch = useAppDispatch();
@@ -36,12 +37,14 @@ const Pay = () => {
     const handleFlutterPayment = useFlutterwave(config);
 
     const payNow = () => {
-        alert("Processing")
         handleFlutterPayment({
             callback: (response) => {
-              console.log(response);
+            //   console.log(response);
               if(response.status === "successful"){
-                alert("Payment Successful");
+                dispatch(updateNotification({text:"Payment Successful!", imageUrl: 'show'}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
                 router.push('/')
                 dispatch(clearCart());
               }

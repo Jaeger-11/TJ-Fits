@@ -25,7 +25,6 @@ export interface searchparams{
 }
 
 export interface cart{
-    isCartOpen: boolean;
     cartItems: Array<feature>;
     totalCartItems: number;
     subTotal: number;
@@ -41,7 +40,9 @@ export interface user{
     username: string;
     uid: string;
     email: string;
-    contactShippingInfo: infoData
+    contactShippingInfo: infoData;
+    notify: boolean;
+    toastContent: {header?: string, text: string, imageUrl?: string}
 }
 
 export interface infoData{
