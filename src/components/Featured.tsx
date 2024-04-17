@@ -1,6 +1,7 @@
 import { getFeatured } from "../app/sanity-utils";
 import { feature } from "../app/interfaces/interface";
 import Image from "next/image";
+import Link from "next/link";
 
 const Featured = async () => {
     const data = await getFeatured();
@@ -15,7 +16,7 @@ const Featured = async () => {
                 {
                     data.slice(0,3).map((feature:feature) => {
                         const { _id, imageUrl, name} = feature;
-                        return <div className="relative aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
+                        return <Link href='/products' className="relative aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
                             <Image
                             src={imageUrl}
                             alt={name}
@@ -24,7 +25,7 @@ const Featured = async () => {
                             className="h-full w-full object-cover object-center"
                             />
                             <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
-                        </div>
+                        </Link>
                     })
                 }
             </div>
