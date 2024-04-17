@@ -2,8 +2,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cart, feature } from "@/app/interfaces/interface";
 
-const localCart = localStorage.getItem('cart')
-const parsedCart = localCart ? JSON.parse(localCart) : [];
+let parsedCart = []
+
+if(typeof window !== 'undefined'){
+    // now access your localStorage
+    const localCart = localStorage.getItem('cart');
+    parsedCart = localCart ? JSON.parse(localCart) : [];
+}
 
 let total = 0;
 if(parsedCart.length > 0) {
