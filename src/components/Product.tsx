@@ -23,12 +23,17 @@ export default function Product(product:feature) {
                     dispatch(closeNotification())
                 }, 2000);
             } else { 
-            dispatch(updateNotification({text:"Sign In / Create Account To Add to Cart!"}))
+                dispatch(updateNotification({text:"Sign In / Create Account To Add to Cart!"}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
+                router.push('/authentication')
+            } 
+        } else {
+            dispatch(updateNotification({text:"Already In Cart!"}))
             setTimeout(() => {
                 dispatch(closeNotification())
             }, 2000);
-            router.push('/authentication')
-        } 
         }
     }
     return(

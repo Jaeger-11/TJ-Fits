@@ -30,6 +30,11 @@ const AddButton = (data:{product:product}) => {
                 router.push('/authentication') 
               } 
             }
+        } else {
+          dispatch(updateNotification({text:"Already In Cart!"}))
+          setTimeout(() => {
+              dispatch(closeNotification())
+          }, 2000);
         }
     }
   return (

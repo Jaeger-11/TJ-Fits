@@ -40,27 +40,24 @@ const userSlice = createSlice({
         updateInfo: (state, {payload}) => {
             state.contactShippingInfo = payload
         },
-        closeNotification: (state) => {
-            state.notify = false;
+        clearNotification: (state) => {
             state.toastContent = {
                 imageUrl: "",
                 header: "",
                 text: ""
             }
         },
+        closeNotification: (state) => {
+            state.notify = false;
+        },
         updateNotification: (state, {payload}) => {
             state.notify = false;
-            state.toastContent = {
-                imageUrl: "",
-                header: "",
-                text: ""
-            }
             state.toastContent = payload;
             state.notify = true;
         }
     }
 })
 
-export const {setUser, logOut, updateInfo, closeNotification, updateNotification} = userSlice.actions
+export const {setUser, logOut, updateInfo, closeNotification, updateNotification, clearNotification} = userSlice.actions
 
 export default userSlice.reducer

@@ -15,7 +15,7 @@ import Toast from "./Toast";
 const Navbar = () => {
     const dispatch = useAppDispatch();
     const { totalCartItems } = useAppSelector((state) => state.cart)
-    const { username, email } = useAppSelector((state) => state.user)
+    const { username, email, notify } = useAppSelector((state) => state.user)
     const pathname = usePathname()
     const [isMenu, setIsMenu] = useState<boolean>(false);
     const [details, setDetails] = useState<boolean>(false);
@@ -46,8 +46,8 @@ const Navbar = () => {
 
   return (
     <nav className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
+         <Toast/>
         <div className=' lg:w-4/5 mx-auto justify-between flex flex-row-reverse items-center lg:flex-row'>
-            <Toast/>
             <Link href='/cart' className='text-black cursor-pointer text-sm lg:hidden'>CART({totalCartItems})</Link>
             <section className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] lg:static lg:translate-x-0 lg:translate-y-0  justify-between flex-item-center lg:gap-[10vw]'>
                 <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>

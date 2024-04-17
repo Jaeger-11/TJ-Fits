@@ -29,6 +29,16 @@ body{
   background: #F5F4F4;
 }
 
+@keyframes slide {
+  from {display: block;}
+  to {display: none;}
+}
+
+.hide{
+  animation-name: slide;
+  animation-delay: 0.15s;
+}
+
 *{
   margin: 0;
   padding: 0;
