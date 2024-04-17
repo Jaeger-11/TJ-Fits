@@ -1,12 +1,22 @@
 "use client";
 import { createSlice } from "@reduxjs/toolkit";
-import { cart } from "@/app/interfaces/interface";
+import { cart, feature } from "@/app/interfaces/interface";
+
+const localCart = localStorage.getItem('cart')
+const parsedCart = localCart ? JSON.parse(localCart) : [];
+
+let total = 0;
+if(parsedCart.length > 0) {
+    parsedCart.map((item:feature) => {
+        total += item.price ? item.price * (item.quantity ? item.quantity : 1) : 0
+    })
+}
 
 
 const initialState:cart = {
-    cartItems : [],
-    totalCartItems : 0,
-    subTotal: 0
+    cartItems : parsedCart,
+    totalCartItems : parsedCart.length || 0,
+    subTotal: total
 }
 
 const cartSlice = createSlice({
@@ -21,6 +31,7 @@ const cartSlice = createSlice({
                 total += item.price ? item.price * (item.quantity ? item.quantity : 1) : 0
             })
             state.subTotal = total;
+            localStorage.setItem("cart", JSON.stringify(state.cartItems))
         },
         removeFromCart: (state, action) => {
             state.cartItems = state.cartItems.filter((item) => item._id !== action.payload)
@@ -30,11 +41,13 @@ const cartSlice = createSlice({
                 total += item.price ? item.price * (item.quantity ? item.quantity : 1) : 0
             })
             state.subTotal = total;
+            localStorage.setItem("cart", JSON.stringify(state.cartItems))
         },
         clearCart: (state) => { 
             state.cartItems = [] 
             state.totalCartItems = 0;
             state.subTotal = 0;
+            localStorage.setItem("cart", JSON.stringify(state.cartItems))
         },
         increaseQuantity: (state,{payload}) => {
             state.cartItems = state.cartItems.map((item) => {
@@ -49,6 +62,7 @@ const cartSlice = createSlice({
                 total += item.price ? item.price * (item.quantity ? item.quantity : 1) : 0
             })
             state.subTotal = total;
+            localStorage.setItem("cart", JSON.stringify(state.cartItems))
         },
         decreaseQuantity: (state,{payload}) => {
             state.cartItems = state.cartItems.map((item) => {
@@ -63,6 +77,7 @@ const cartSlice = createSlice({
                 total += item.price ? item.price * (item.quantity ? item.quantity : 1) : 0
             })
             state.subTotal = total;
+            localStorage.setItem("cart", JSON.stringify(state.cartItems))
         }
     }
 })

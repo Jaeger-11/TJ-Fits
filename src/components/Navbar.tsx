@@ -34,7 +34,7 @@ const Navbar = () => {
         // Sign-out successful.
             dispatch(clearCart())
             dispatch(logOut())
-            dispatch(updateNotification({text:"User Successfully Signed!", imageUrl: 'show'}))
+            dispatch(updateNotification({text:"User Successfully Signed Out!", imageUrl: 'show'}))
             setTimeout(() => {
                 dispatch(closeNotification())
             }, 2000);
