@@ -17,7 +17,7 @@ const Pay = () => {
     let total = subTotal + shippingFee;
 
     const config = {
-        public_key: "FLWPUBK_TEST-197b5b96c7c91eee1d28083d31134355-X",
+        public_key: process.env.TEST_FLUTTERWAVE || 'string',
         tx_ref: `${Date.now()}`,
         amount: total,
         currency: 'NGN',
