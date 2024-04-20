@@ -36,3 +36,5 @@ export default async function Products(params: {
     </div>
   )
 }
+
+export const revalidate = 36 // revalidate at most every hour

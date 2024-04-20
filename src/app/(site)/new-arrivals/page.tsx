@@ -23,3 +23,5 @@ export default async function NewArrivals() {
     </div>
     )
 }
+
+export const revalidate = 36

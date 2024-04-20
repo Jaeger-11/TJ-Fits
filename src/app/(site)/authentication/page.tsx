@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link"
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth"
 import { auth } from "@/database/config";
 import { inputProps } from "@/app/interfaces/interface";
@@ -8,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
 import { setUser, logOut } from "@/lib/features/userSlice";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/database/config";
 
 const Authenticate = () => {
     const dispatch = useAppDispatch();
@@ -54,6 +55,10 @@ const Authenticate = () => {
           setUserData({email:"", password:"", username: ""})
     }
 
+    const createData = async (id:string) => {
+        await setDoc(doc(db, "users", id), {wishlist:[]});
+    }
+
     const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setErrorInfo('Creating...')
@@ -69,6 +74,8 @@ const Authenticate = () => {
                         setErrorInfo(error);
                     });
                 }
+                setUserData({email:"", password:"", username: ""})
+                createData(auth.currentUser?.uid || '')
                 setErrorInfo("")
                 dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
                 setTimeout(() => {
@@ -83,7 +90,6 @@ const Authenticate = () => {
                     setErrorInfo("")
                 }, 3000);
             });
-            setUserData({email:"", password:"", username: ""})
     }
 
     const signInWithGoogle = () => {
@@ -94,6 +100,7 @@ const Authenticate = () => {
             const token = credential?.accessToken;
             // The signed-in user info.
             const user = result.user;
+            createData(auth.currentUser?.uid || '')
             dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
             setTimeout(() => {
                 dispatch(closeNotification())

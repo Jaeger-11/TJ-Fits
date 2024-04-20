@@ -12,7 +12,7 @@ export default function Page(){
                     <p>TOTAL</p>
                 </header>
                 <section>
-                    <CartItems/>
+                    <CartItems />
                 </section>
            </section>
         </div>

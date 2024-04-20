@@ -3,6 +3,7 @@ import ImageGallery from "@/components/ImageGallery"
 import { product } from "@/app/interfaces/interface"
 import { getProduct, currencyFormat } from "@/app/sanity-utils"
 import AddButton from "@/components/AddButton";
+import WishlistAdd from "@/components/WishlistAdd";
 import Link from "next/link";
 
 export default async function Product({params}: {
@@ -40,9 +41,12 @@ export default async function Product({params}: {
                         <Link href='/cart' className=" text-xs capitalize transition-all text-gray-500 hover:text-black">Checkout now</Link>
                     </section>
                     <p className="line150 text-sm">{description ? description : ""}</p>
+                    <WishlistAdd product={product}/>
                 </article>
             </div>
         </section>
     </div>
   )
 }
+
+export const revalidate = 36
