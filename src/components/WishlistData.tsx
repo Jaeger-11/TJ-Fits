@@ -12,7 +12,7 @@ export const useGetData = () => {
     const { uid } = useAppSelector((state) => state.user);
     const [wishlist, setWishlist] = useState<any>([]);
 
-    const unsub = onSnapshot(doc(db, "users", uid), (doc) => {
+    const unsub = onSnapshot(doc(db, "users", uid ? uid : ""), (doc) => {
         setWishlist(doc.data()?.wishlist);
     });
     
