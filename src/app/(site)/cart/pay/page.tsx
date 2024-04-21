@@ -6,6 +6,7 @@ import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import { clearCart } from '@/lib/features/cartSlice';
 import { useRouter } from 'next/navigation';
 import { updateNotification, closeNotification } from '@/lib/features/userSlice';
+import { useState } from 'react';
 
 const Pay = () => {
     const dispatch = useAppDispatch();
@@ -13,8 +14,20 @@ const Pay = () => {
     const { contactShippingInfo, uid, email } = useAppSelector((state) => state.user);
     const { subTotal } = useAppSelector((state) => state.cart)
     const { contact, alternative, firstName, lastName, state, address } = contactShippingInfo;
-    let shippingFee = 1500
-    let total = subTotal + shippingFee;
+    const shippingOptions = [
+        {
+            name: "Standard Delivery",
+            info: "3 - 5 days",
+            cost: 2500
+        }, 
+        {
+            name: "Express Delivery",
+            info: "1 - 2 day(s)",
+            cost: 5000
+        }
+    ]
+    const [option, setOption] = useState<{name:string, info:string, cost:number}>(shippingOptions[0])
+    let total = subTotal + option.cost;
 
     const config = {
         public_key: process.env.NEXT_PUBLIC_TEST_FLUTTERWAVE || 'string',
@@ -75,20 +88,21 @@ const Pay = () => {
 
             <section>
                 <h2>Shipping Method</h2>
-                <section className='mt-2 p-2 border border-black mb-4'>
-                    {/* <article className='flex gap-4 items-center text-gray-600'>
-                        <h1 className=" text-black text-sm capitalize">Contact</h1>
-                        <div>
-                            {contact + ' | ' + alternative}
-                        </div>
-                    </article>
-                    <hr  className='my-2 bg-black h-[1px]'/>
-                    <article className="flex gap-4 items-center text-gray-600">
-                        <h1 className="text-black  text-sm capitalize"> Ship To</h1>
-                        <section>
-                            {state + ', ' + address}
-                        </section>
-                    </article> */}
+                <section className='mt-2 p-2 border border-black mb-4 flex flex-col gap-3'>
+                    {shippingOptions.map((item, index) => {
+                        return (
+                            <article key={index} className='flex gap-4 items-center text-gray-600'>
+                                <div onClick={() => setOption(shippingOptions[index])} className={`${option.name === item.name ? 'bg-black flex items-center justify-center' : 'bg-white'} w-4 aspect-square rounded-full transition-all border-black border cursor-pointer`}>
+                                    <p className={`${option.name === item.name ? 'bg-white w-2 aspect-square' : 'bg-none'} rounded-full transition-all`}></p>
+                                </div>
+                                <div className='flex-1 capitalize'>
+                                    <h1 className='text-black  text-'>{item.name}</h1>
+                                    <p className='text-xs'>{item.info}</p>
+                                </div>
+                                <h3 className='font-medium styrene400 text-black'>{currencyFormat(item.cost)}</h3>
+                            </article>
+                        )
+                    })}
                 </section>
             </section>
 
@@ -97,11 +111,11 @@ const Pay = () => {
                 <section className='mt-2 p-2 border border-black mb-4 flex flex-col gap-2 text-base styrene400'>
                     <div className='flex justify-end gap-4 items-center'>
                         <p className='text-gray-600 text-xs'>Cart Total</p>
-                        <p>&#8358;{currencyFormat(subTotal)}</p>
+                        <p>{currencyFormat(subTotal)}</p>
                     </div>
                     <div className='flex justify-end gap-4 items-center'>
                         <p className='text-gray-600 text-xs'>Shipping / Delivery Fee</p>
-                        <p>&#8358;{currencyFormat(shippingFee)}</p>
+                        <p>{currencyFormat(option.cost)}</p>
                     </div>
                     <div className='flex justify-end gap-4 items-center'>
                         <p className='text-gray-600 text-xs'>Total Amount To Pay</p>
