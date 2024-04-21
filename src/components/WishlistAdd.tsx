@@ -5,14 +5,16 @@ import { updateNotification, closeNotification } from "@/lib/features/userSlice"
 import { db } from "@/database/config";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useAppSelector } from "@/lib/hooks";
+import { getData } from "./WishlistData";
 
 const WishlistAdd = (data:{product:feature}) => {
-    const { uid, wishlist } = useAppSelector((state) => state.user);
+    const {wishlist} = getData();
+    const { uid } = useAppSelector((state) => state.user);
     const {name, price, imageUrl, _id, slug} = data.product;
     const userRef = doc(db, 'users', uid)
     const dispatch = useAppDispatch();
     const addToWishlist = async () => {
-        if(wishlist.filter((item) => item._id === _id).length > 0){
+        if(wishlist.filter((item:feature) => item._id === _id).length > 0){
             dispatch(updateNotification({header:name, text: "Already Added To Wishlist", imageUrl}))
             setTimeout(() => {
                 dispatch(closeNotification())
@@ -20,15 +22,15 @@ const WishlistAdd = (data:{product:feature}) => {
         } else {
             try {
                 await updateDoc(userRef, {
-                    wishlist: arrayUnion({name, price, imageUrl, _id, slug})
+                    wishlist: arrayUnion({name, price, imageUrl, slug, _id})
                 });
+                dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
+                setTimeout(() => {
+                    dispatch(closeNotification())
+                }, 2000);
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
-            dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
-            setTimeout(() => {
-                dispatch(closeNotification())
-            }, 2000);
         }
     }
   return (

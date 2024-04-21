@@ -9,13 +9,11 @@ import { feature } from "@/app/interfaces/interface";
 import {useRouter} from "next/navigation";
 
 export const getData = () => {
-    const dispatch = useAppDispatch();
     const { uid } = useAppSelector((state) => state.user);
     const [wishlist, setWishlist] = useState<any>([]);
 
     const unsub = onSnapshot(doc(db, "users", uid), (doc) => {
         setWishlist(doc.data()?.wishlist);
-        dispatch(updateWishlist(doc.data()?.wishlist));
     });
     
     useEffect(() => {

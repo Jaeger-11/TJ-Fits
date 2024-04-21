@@ -11,9 +11,9 @@ export default async function Product({params}: {
     params: {slug: string}
 }) {
     const product = await getProduct(params.slug)
-    const {name, description, images, price, category, _id}:product = product;
+    const {name, description, images, price, category, _id, slug}:product = product;
     let imageUrl = forUrl(images[0]).url();
-    let feature = {name, imageUrl, price, _id}
+    let feature = {name, imageUrl, price, _id, slug}
   return (
     <div className="p-4 bg-white">
         <Back/>

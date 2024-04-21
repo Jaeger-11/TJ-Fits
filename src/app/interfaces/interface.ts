@@ -3,7 +3,7 @@ export interface feature {
     _id: string;
     imageUrl: string
     price? : number,
-    slug? : string,
+    slug : string,
     quantity? : number
 }
 

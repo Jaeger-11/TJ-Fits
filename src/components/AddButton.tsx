@@ -2,7 +2,6 @@
 import { feature, product } from "@/app/interfaces/interface";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
-import { forUrl } from "../../sanity/lib/client";
 import { useRouter } from "next/navigation";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
@@ -12,7 +11,7 @@ const AddButton = (data:{product:feature, style: string}) => {
     const { uid } = useAppSelector((state) => state.user)
     const { cartItems } = useAppSelector((state) => state.cart);
     const add = () => {
-        const {name, price, imageUrl, _id} = data.product;
+        const {name, price, imageUrl, _id, slug} = data.product;
         if(cartItems.filter((item) => item._id === _id).length === 0){
               if (uid.length > 0){
                 dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
