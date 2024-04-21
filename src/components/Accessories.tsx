@@ -21,6 +21,7 @@ const Accessories = async () => {
                         <MotionDiv
                         initial={{opacity:0, y:50}}
                         whileInView={{opacity:1, y:0, transition:{duration:1}}}
+                        key={_id}
                         >
                         <Link href={`/product/${slug}`} key={_id} className="block opacity-100 lg:opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer">
                             <Image 
@@ -47,7 +48,6 @@ const Accessories = async () => {
             {extra.slice(3,5).map((ext:feature) => {
                 const {name, imageUrl, _id} = ext;
                 return (
-                    <section key={_id}>
                     <MotionDiv
                     initial={{opacity:0, y:50}}
                     whileInView={{opacity:1, y:0, transition:{duration:1}}}
@@ -60,9 +60,7 @@ const Accessories = async () => {
                         className="h-full w-full object-cover object-center hover:scale-110 transition-all"
                         />
                         <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
-                    </MotionDiv>
-                    </section>
-                    
+                    </MotionDiv>                    
                 )
             })}
         </div>
