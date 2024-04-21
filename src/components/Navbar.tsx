@@ -11,6 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setUser, updateNotification, closeNotification } from "@/lib/features/userSlice";
 import { clearCart } from "@/lib/features/cartSlice";
 import Toast from "./Toast";
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -34,6 +35,8 @@ const Navbar = () => {
         // Sign-out successful.
             dispatch(clearCart())
             dispatch(logOut())
+            setIsMenu(false)
+            setDetails(false)
             dispatch(updateNotification({text:"User Successfully Signed Out!", imageUrl: 'show'}))
             setTimeout(() => {
                 dispatch(closeNotification())
@@ -45,7 +48,10 @@ const Navbar = () => {
     }
 
   return (
-    <nav className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
+    <motion.nav 
+    initial={{y:-20}}
+    whileInView={{y:0, transition:{duration:0.5}}}
+    className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
          <Toast/>
         <div className=' lg:w-4/5 mx-auto justify-between flex flex-row-reverse items-center lg:flex-row'>
             <Link href='/cart' className='text-black cursor-pointer text-sm lg:hidden'>CART({totalCartItems})</Link>
@@ -118,7 +124,7 @@ const Navbar = () => {
                 }
             </div>
         </div>
-    </nav>
+    </motion.nav>
   )
 }
 

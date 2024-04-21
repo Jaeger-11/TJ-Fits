@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useRouter } from "next/navigation";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
+import { motion } from "framer-motion";
 
 export default function Product(product:feature) {
     const router = useRouter()
@@ -37,7 +38,10 @@ export default function Product(product:feature) {
         }
     }
     return(
-        <section  key={_id} className="product opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer overflow-hidden">
+        <motion.section  
+        initial={{opacity:0, y:50}}
+        whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
+        key={_id} className="product opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer overflow-hidden">
             <div className="overflow-hidden relative">
             <Link href={`product/${slug}`}>
                 <Image 
@@ -54,6 +58,6 @@ export default function Product(product:feature) {
                 <p className="capitalize text-sm">{name}</p>
                 <h4 className=" font-bold text-sm">&#8358;{currencyFormat(price)}</h4>
             </Link>
-        </section>
+        </motion.section>
     )
 }

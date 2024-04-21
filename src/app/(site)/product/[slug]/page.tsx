@@ -6,6 +6,7 @@ import AddButton from "@/components/AddButton";
 import WishlistAdd from "@/components/WishlistAdd";
 import Link from "next/link";
 import { forUrl } from "../../../../../sanity/lib/client";
+import MotionDiv from "@/components/MotionDiv";
 
 export default async function Product({params}: {
     params: {slug: string}
@@ -20,8 +21,11 @@ export default async function Product({params}: {
         <section className="lg:w-4/5 mx-auto">
             <div className="grid gap-4 md:grid-cols-2">
                 <ImageGallery images={images} />
-                <article className="flex flex-col gap-3 lg:gap-5  py-4 relative">
-                    <div className="absolute right-0 top-0 rating  px-2 mt-2 styrene400 text-xs flex gap-1 items-center w-max rounded-full bg-black text-white">
+                <MotionDiv 
+                initial={{opacity:0, x:50}}
+                animate={{opacity:1, x:0, transition:{duration:1}}}
+                className="flex flex-col gap-3 lg:gap-5  py-4 relative">
+                    <div className="absolute right-0 top-0 px-2 styrene400 text-xs flex gap-1 items-center w-max rounded-full bg-green-700 text-white">
                         <p>4.5</p>
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-3 aspect-square" width="26" height="24" viewBox="0 0 26 24" fill="none">
                             <path d="M13 10.875H16L19.375 11.3125L15 12L13 10.875L11 12L6.625 11.2812L13 10.875ZM5.28125 24L7.3125 15.2188L0.5 9.3125L9.5 8.53125L13 0.25L16.5 8.53125L25.5 9.3125L18.6875 15.2188L20.7188 24L13 19.3438L5.28125 24Z" fill="#FFCC16"/>
@@ -41,11 +45,11 @@ export default async function Product({params}: {
                     </section>
                     <section className="flex gap-2 items-center">
                         <AddButton product={feature} style="px-4 py-2.5 text-xs capitalize bg-black text-white rounded-md transition-all hover:scale-90"/>
-                        <Link href='/cart' className=" text-xs capitalize transition-all text-gray-500 hover:text-black">Checkout now</Link>
+                        <Link href='/cart' className=" text-xs capitalize transition-all text-gray-500 hover:text-green-500 hover:font-medium">Checkout now</Link>
                     </section>
                     <p className="line150 text-sm">{description ? description : ""}</p>
                     <WishlistAdd product={feature}/>
-                </article>
+                </MotionDiv>
             </div>
         </section>
     </div>

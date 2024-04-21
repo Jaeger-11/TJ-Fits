@@ -2,10 +2,14 @@
 import Image from "next/image";
 import { forUrl } from "../../sanity/lib/client";
 import { useState } from "react";
+import MotionDiv from "./MotionDiv";
 export default function ImageGallery({images}:any){
     const [selected, setSelected] = useState(images[0]);
     return (
-        <div className="flex flex-col-reverse lg:flex-row gap-4">
+        <MotionDiv 
+        initial={{scale:0.5,opacity: 0, x:-20}}
+        animate={{scale:1, x:0, opacity:1, transition:{duration:1}}}
+        className="flex flex-col-reverse lg:flex-row gap-4">
             <section className="flex lg:max-w-20 lg:flex-col gap-2 overflow-hidden">
                 {images.map((image:any, id: number) => {
                     return (
@@ -32,6 +36,6 @@ export default function ImageGallery({images}:any){
                 className="cursor-pointer w-full aspect-square object-cover object-center hover:scale-110 transition-all"
                 />
             </section>
-        </div>
+        </MotionDiv>
     )
 }

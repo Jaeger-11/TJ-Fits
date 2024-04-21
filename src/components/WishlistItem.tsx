@@ -9,9 +9,9 @@ import { RemoveFromWishlist } from "./WishlistData";
 const WishlistItem = (data:{item:feature}) => {
     const {_id, name, slug, price, imageUrl} = data.item
   return (
-    <section key={_id} className="flex justify-between styrene400 text-[10px] md:text-xs lg:text-sm pb-4 border-b">
+    <section key={_id} className="flex justify-between styrene400 text-xs lg:text-sm pb-4 border-b">
         <div className='flex gap-2 md:gap-4 flex-1'>
-            <Link href={`/product/${slug}`} className='w-10 lg:w-1/6 overflow-hidden aspect-square rounded-sm md:rounded-md bg-white'>
+            <Link href={`/product/${slug}`} className='w-1/5 lg:w-1/6 overflow-hidden aspect-square rounded-sm md:rounded-md bg-white'>
                 <Image
                 src={imageUrl}
                 alt={name}
@@ -27,7 +27,7 @@ const WishlistItem = (data:{item:feature}) => {
         </div>
         <section className=' w-max flex flex-col justify-between gap-2 items-end'>
           <RemoveFromWishlist product={data.item}/>
-          <AddButton product={data.item} style="bg-green-400 text-white p-2 rounded-md text-xs hover:scale-95 hover:opacity-80"/>
+          <AddButton product={data.item} style="bg-green-400 text-white p-1 sm:p-2 rounded-md text-xs hover:scale-95 hover:opacity-80"/>
         </section>
     </section>
   )

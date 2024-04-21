@@ -25,8 +25,8 @@ const CartItems = () => {
             <p className="text-[10px] md:text-xs my-2 text-gray-500">Taxes and Shipping calculated at Checkout</p>
 
             <div className="flex justify-between items-center mt-2">
-                <Link href='/products' className="underline text-xs">Back To Shopping</Link>
-                <Link href={cartItems.length > 0 ? '/cart/shipping' : '/cart'} className={`${cartItems.length === 0 && 'cursor-not-allowed ' } text-sm bg-black text-white px-6 py-2 md:px-10 hover:scale-95`}>Checkout</Link>
+                <Link href='/products' className="underline text-xs hover:text-green-500 transition-all">Back To Shopping</Link>
+                <Link href={cartItems.length > 0 ? '/cart/shipping' : '/cart'} className={`${cartItems.length === 0 && 'cursor-not-allowed ' } text-sm bg-black transition-all rounded-sm text-white px-6 py-2 md:px-10 hover:scale-95`}>Checkout</Link>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ import { infoData } from "@/app/interfaces/interface";
 import { updateInfo } from "@/lib/features/userSlice";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
+import MotionDiv from "@/components/MotionDiv";
 
 const ShippingInfo = () => {
     const dispatch = useAppDispatch();
@@ -36,7 +37,10 @@ const ShippingInfo = () => {
     }
 
   return (
-    <div className="lg:my-4 p-4">
+    <MotionDiv 
+    initial={{opacity:0, y:50}}
+    whileInView={{opacity:1, y:0, transition:{duration:1}}}
+    className="lg:my-4 p-4">
         <form className="md:w-3/5 lg:w-1/2 mx-auto shipping">
             <section>
                 <h1 className="mb-2 text-gray-600 text-sm uppercase">Contact Information</h1>
@@ -64,11 +68,11 @@ const ShippingInfo = () => {
             </section>
 
             <div className="flex justify-between items-end mt-2">
-                <Link href='/cart' className="underline text-xs">Back To Cart</Link>
-                <div onClick={submitInfo} className="text-sm cursor-pointer bg-black text-white px-4 py-2 md:px-6 hover:scale-95">Continue to Shipping</div>
+                <Link href='/cart' className="underline text-xs transition-all hover:text-green-500">Back To Cart</Link>
+                <div onClick={submitInfo} className="text-sm cursor-pointer bg-black transition-all rounded-sm text-white px-4 py-2 md:px-6 hover:scale-95">Continue to Shipping</div>
             </div>
         </form>
-    </div>
+    </MotionDiv>
   )
 }
 

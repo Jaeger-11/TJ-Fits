@@ -1,8 +1,14 @@
-import Link from "next/link"
+import Link from "next/link";
+import MotionDiv from "./MotionDiv";
+
 const Footer = () => {
   return (
-    <div className="bg-[#DDDDDD] p-4 py-8 lg:py-12">
-        <footer className=' lg:w-4/5 mx-auto justify-between flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row'>
+    <div
+    className="bg-[#DDDDDD] p-4 py-8 lg:py-12">
+        <MotionDiv 
+        initial={{opacity:0, y:50}}
+        whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
+        className=' lg:w-4/5 mx-auto justify-between flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row'>
             <section className="flex gap-4">
                 <div className="flex flex-col justify-between">
                     <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>
@@ -31,10 +37,10 @@ const Footer = () => {
                 <form >
                     <input className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
                     <p className="text-sm md:text-sm my-2 ">By signing up, you agree to our <Link href='/' className="underline">Privacy Policy</Link> and <Link href='/' className="underline">Terms of Service.</Link> </p>
-                    <button className="px-4 py-3 bg-black text-white text-sm hover:scale-90 transition-all">Subscribe</button>
+                    <button className="px-4 py-3 bg-black rounded-sm text-white text-sm hover:scale-95 transition-all">Subscribe</button>
                 </form>
             </section>
-        </footer>
+        </MotionDiv>
     </div>
   )
 }

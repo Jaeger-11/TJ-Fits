@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { currencyFormat } from '@/app/sanity-utils';
 import { useAppDispatch } from '@/lib/hooks';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '@/lib/features/cartSlice';
+import { motion } from 'framer-motion';
 
 const CartItem = (data:{item:feature}) => {
     const dispatch = useAppDispatch();
@@ -10,7 +11,10 @@ const CartItem = (data:{item:feature}) => {
     const widthSize = window.innerWidth;
 
   return (
-    <section key={_id} className="grid grid-cols-5 styrene400 lg:grid-cols-6 text-[10px] md:text-xs lg:text-sm pb-4 border-b items-center">
+    <motion.section 
+    initial={{opacity:0, y:50}}
+    whileInView={{opacity:1, y:0, transition:{duration:1}}}
+    key={_id} className="grid grid-cols-5 styrene400 lg:grid-cols-6 text-[10px] md:text-xs lg:text-sm pb-4 border-b items-center">
         <div className='flex gap-2 md:gap-4 col-span-2 lg:col-span-3'>
             <div className='w-10 lg:w-1/6 overflow-hidden aspect-square rounded-sm md:rounded-md bg-white'>
                 <Image
@@ -23,7 +27,7 @@ const CartItem = (data:{item:feature}) => {
             </div>
             <div className='flex-1 py-2 lg:flex-auto flex flex-col justify-between'>
                 <h1 className="styrene400 capitalize">{widthSize < 600 ? name.substring(0,12) + '...' : name}</h1>
-                <p onClick={() => dispatch(removeFromCart(_id))} className='text-[10px] lg:text-xs underline cursor-pointer text-red-500'>Remove</p>
+                <p onClick={() => dispatch(removeFromCart(_id))} className='text-[10px] md:text-xs cursor-pointer text-red-500 opacity-80 hover:opacity-100 hover:underline transition-all'>Remove</p>
             </div>
         </div>
         <p>&#8358;{currencyFormat(price)}</p>
@@ -35,7 +39,7 @@ const CartItem = (data:{item:feature}) => {
             </div>
         </section>
         <p>&#8358;{currencyFormat(price && price * (quantity ? quantity : 0))}</p>
-    </section>
+    </motion.section>
   )
 }
 

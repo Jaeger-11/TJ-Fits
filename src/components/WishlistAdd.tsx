@@ -11,7 +11,7 @@ const WishlistAdd = (data:{product:feature}) => {
     const {wishlist} = useGetData();
     const { uid } = useAppSelector((state) => state.user);
     const {name, price, imageUrl, _id, slug} = data.product;
-    const userRef = doc(db, 'users', uid)
+    // const userRef = doc(db, 'users', uid)
     const dispatch = useAppDispatch();
     const addToWishlist = async () => {
         if(wishlist?.filter((item:feature) => item._id === _id).length > 0){
@@ -20,17 +20,19 @@ const WishlistAdd = (data:{product:feature}) => {
                 dispatch(closeNotification())
             }, 2000);
         } else {
+          if(uid.length > 0){
             try {
-                await updateDoc(userRef, {
-                    wishlist: arrayUnion({name, price, imageUrl, slug, _id})
-                });
-                dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
-                setTimeout(() => {
-                    dispatch(closeNotification())
-                }, 2000);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
+              await updateDoc(doc(db, 'users', uid), {
+                  wishlist: arrayUnion({name, price, imageUrl, slug, _id})
+              });
+              dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
+              setTimeout(() => {
+                  dispatch(closeNotification())
+              }, 2000);
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
+          }
         }
     }
   return (

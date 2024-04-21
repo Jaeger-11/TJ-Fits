@@ -112,8 +112,8 @@ const Pay = () => {
             
 
             <div className="flex justify-between items-end mt-2">
-                <Link href='/cart/shipping' className="underline text-xs">Back To Shipping Information</Link>
-                <button onClick={payNow} className=" text-sm bg-black text-white px-4 py-2 md:px-6 hover:scale-95">Pay Now</button>
+                <Link href='/cart/shipping' className="underline text-xs transition-all hover:text-green-500">Back To Shipping Information</Link>
+                <button onClick={payNow} className=" text-sm bg-black transition-all rounded-sm text-white px-4 py-2 md:px-6 hover:scale-95">Pay Now</button>
             </div>
         </div>
     </div>
