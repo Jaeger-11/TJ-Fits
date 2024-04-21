@@ -47,10 +47,11 @@ const Accessories = async () => {
             {extra.slice(3,5).map((ext:feature) => {
                 const {name, imageUrl, _id} = ext;
                 return (
+                    <section key={_id}>
                     <MotionDiv
                     initial={{opacity:0, y:50}}
                     whileInView={{opacity:1, y:0, transition:{duration:1}}}
-                    key={_id} className="relative aspect-square cursor-pointer overflow-hidden">
+                    key={_id} className="relative block aspect-square cursor-pointer overflow-hidden">
                         <Image
                         src={imageUrl}
                         alt={name}
@@ -60,6 +61,8 @@ const Accessories = async () => {
                         />
                         <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
                     </MotionDiv>
+                    </section>
+                    
                 )
             })}
         </div>

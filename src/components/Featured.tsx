@@ -18,22 +18,26 @@ const Featured = async () => {
                     data.slice(0,3).map((feature:feature) => {
                         const { _id, imageUrl, name} = feature;
                         return (
-                        <MotionDiv
-                        initial={{opacity:0, y:30}}
-                        whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
-                        whileHover={{scale:1.05}}
-                        >
-                            <Link href='/products' className="relative block aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
-                                <Image
-                                src={imageUrl}
-                                alt={name}
-                                width={500}
-                                height={500}
-                                className="h-full w-full object-cover object-center"
-                                />
-                                <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
-                            </Link>
-                        </MotionDiv>
+                            // <section key={_id}>
+                                <MotionDiv
+                                initial={{opacity:0, y:30}}
+                                whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
+                                whileHover={{scale:1.05}}
+                                key={_id}
+                                >
+                                    <Link href='/products' className="relative block aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
+                                        <Image
+                                        src={imageUrl}
+                                        alt={name}
+                                        width={500}
+                                        height={500}
+                                        className="h-full w-full object-cover object-center"
+                                        />
+                                        <p className="absolute bottom-5 left-5 styreneBold text-[#F5F4F4] capitalize text-base lg:text-lg text-shadow font-bold">{name}</p>
+                                    </Link>
+                                </MotionDiv>
+                            // </section>
+                       
                     )
                     })
                 }
