@@ -1,31 +1,35 @@
 "use client"
-import { product } from "@/app/interfaces/interface";
+import { feature } from "@/app/interfaces/interface";
 import { useAppDispatch } from "@/lib/hooks";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
-import { forUrl } from "../../sanity/lib/client";
 import { db } from "@/database/config";
-import { collection, addDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useAppSelector } from "@/lib/hooks";
 
-const WishlistAdd = (data:{product:product}) => {
-    const { uid } = useAppSelector((state) => state.user);
-    const {name, price, images, _id} = data.product;
-    let imageUrl = forUrl(images[0]).url();
+const WishlistAdd = (data:{product:feature}) => {
+    const { uid, wishlist } = useAppSelector((state) => state.user);
+    const {name, price, imageUrl, _id, slug} = data.product;
     const userRef = doc(db, 'users', uid)
     const dispatch = useAppDispatch();
     const addToWishlist = async () => {
-        try {
-            await updateDoc(userRef, {
-                wishlist: arrayUnion({name, price, imageUrl, _id})
-            });
-            // console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-        dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
-        setTimeout(() => {
-            dispatch(closeNotification())
-        }, 2000);
+        if(wishlist.filter((item) => item._id === _id).length > 0){
+            dispatch(updateNotification({header:name, text: "Already Added To Wishlist", imageUrl}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
+        } else {
+            try {
+                await updateDoc(userRef, {
+                    wishlist: arrayUnion({name, price, imageUrl, _id, slug})
+                });
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
+            dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
+        }
     }
   return (
     <div className="flex gap-1 items-center border py-1 px-2 w-max font-medium hover:bg-gray-100 hover:scale-105 hover:font-semibold">

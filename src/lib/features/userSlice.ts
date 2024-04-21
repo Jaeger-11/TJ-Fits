@@ -20,7 +20,8 @@ const initialState:user = {
         imageUrl: "",
         header: "",
         text: ""
-    }
+    },
+    wishlist: []
 }
 
 const userSlice = createSlice({
@@ -54,10 +55,13 @@ const userSlice = createSlice({
             state.notify = false;
             state.toastContent = payload;
             state.notify = true;
+        }, 
+        updateWishlist: (state, {payload}) => {
+            state.wishlist = payload;
         }
     }
 })
 
-export const {setUser, logOut, updateInfo, closeNotification, updateNotification, clearNotification} = userSlice.actions
+export const {setUser, logOut, updateInfo, closeNotification, updateNotification, clearNotification, updateWishlist} = userSlice.actions
 
 export default userSlice.reducer

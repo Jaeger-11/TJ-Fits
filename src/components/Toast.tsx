@@ -6,7 +6,7 @@ export default function Toast() {
     const { notify, toastContent } = useAppSelector((state) => state.user)
     const { text, header, imageUrl } = toastContent
     return (
-        <div className={`${notify ? 'right-[5%]' : 'right-[0%] top-[-150%] opacity-0'} top-[150%] absolute transition-all z-[60] w-max text-sm`}>
+        <div className={`${notify ? 'right-[5%]' : 'right-[0%] top-[-150%] opacity-0 pointer-events-none'} top-[150%] absolute transition-all z-[60] w-max text-sm`}>
             <div id="toast-success" className="flex items-center gap-1 w-full max-w-xs p-3 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                 {
                     !imageUrl ? 

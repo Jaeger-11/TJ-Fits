@@ -37,4 +37,4 @@ export default async function Products(params: {
   )
 }
 
-export const revalidate = 36 // revalidate at most every hour
+export const revalidate = 360 

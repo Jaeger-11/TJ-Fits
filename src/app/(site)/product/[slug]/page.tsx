@@ -5,12 +5,15 @@ import { getProduct, currencyFormat } from "@/app/sanity-utils"
 import AddButton from "@/components/AddButton";
 import WishlistAdd from "@/components/WishlistAdd";
 import Link from "next/link";
+import { forUrl } from "../../../../../sanity/lib/client";
 
 export default async function Product({params}: {
     params: {slug: string}
 }) {
     const product = await getProduct(params.slug)
-    const {name, description, images, price, category}:product = product;
+    const {name, description, images, price, category, _id}:product = product;
+    let imageUrl = forUrl(images[0]).url();
+    let feature = {name, imageUrl, price, _id}
   return (
     <div className="p-4 bg-white">
         <Back/>
@@ -37,11 +40,11 @@ export default async function Product({params}: {
                         </div>
                     </section>
                     <section className="flex gap-2 items-center">
-                        <AddButton product={product}/>
+                        <AddButton product={feature} style="px-4 py-2.5 text-xs capitalize bg-black text-white rounded-md transition-all hover:scale-90"/>
                         <Link href='/cart' className=" text-xs capitalize transition-all text-gray-500 hover:text-black">Checkout now</Link>
                     </section>
                     <p className="line150 text-sm">{description ? description : ""}</p>
-                    <WishlistAdd product={product}/>
+                    <WishlistAdd product={feature}/>
                 </article>
             </div>
         </section>
@@ -49,4 +52,4 @@ export default async function Product({params}: {
   )
 }
 
-export const revalidate = 36
+export const revalidate = 360

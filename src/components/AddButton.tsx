@@ -1,21 +1,19 @@
 "use client";
-import { product } from "@/app/interfaces/interface";
+import { feature, product } from "@/app/interfaces/interface";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import { forUrl } from "../../sanity/lib/client";
 import { useRouter } from "next/navigation";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
-const AddButton = (data:{product:product}) => {
+const AddButton = (data:{product:feature, style: string}) => {
   const router = useRouter();
     const dispatch = useAppDispatch();
     const { uid } = useAppSelector((state) => state.user)
-    const { cartItems, totalCartItems } = useAppSelector((state) => state.cart);
+    const { cartItems } = useAppSelector((state) => state.cart);
     const add = () => {
-        const {name, price, images, _id} = data.product;
+        const {name, price, imageUrl, _id} = data.product;
         if(cartItems.filter((item) => item._id === _id).length === 0){
-            let imageUrl = forUrl(images[0]).url();
-            if(imageUrl){
               if (uid.length > 0){
                 dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
                 dispatch(updateNotification({header:name, text: "Added To Cart", imageUrl}))
@@ -29,7 +27,6 @@ const AddButton = (data:{product:product}) => {
                 }, 2000);
                 router.push('/authentication') 
               } 
-            }
         } else {
           dispatch(updateNotification({text:"Already In Cart!"}))
           setTimeout(() => {
@@ -38,7 +35,7 @@ const AddButton = (data:{product:product}) => {
         }
     }
   return (
-    <button onClick={add} className="px-4 py-2.5 text-xs capitalize bg-black text-white rounded-md transition-all hover:scale-90">Add to cart</button>
+    <button onClick={add} className={data.style}>Add to cart</button>
   )
 }
 

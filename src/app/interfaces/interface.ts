@@ -42,7 +42,8 @@ export interface user{
     email: string;
     contactShippingInfo: infoData;
     notify: boolean;
-    toastContent: {header?: string, text: string, imageUrl?: string}
+    toastContent: {header?: string, text: string, imageUrl?: string};
+    wishlist: feature[]
 }
 
 export interface infoData{

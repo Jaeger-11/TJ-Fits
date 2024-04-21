@@ -24,4 +24,4 @@ export default async function NewArrivals() {
     )
 }
 
-export const revalidate = 36
+export const revalidate = 360
