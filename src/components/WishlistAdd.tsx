@@ -5,10 +5,10 @@ import { updateNotification, closeNotification } from "@/lib/features/userSlice"
 import { db } from "@/database/config";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useAppSelector } from "@/lib/hooks";
-import { getData } from "./WishlistData";
+import { useGetData } from "./WishlistData";
 
 const WishlistAdd = (data:{product:feature}) => {
-    const {wishlist} = getData();
+    const {wishlist} = useGetData();
     const { uid } = useAppSelector((state) => state.user);
     const {name, price, imageUrl, _id, slug} = data.product;
     const userRef = doc(db, 'users', uid)

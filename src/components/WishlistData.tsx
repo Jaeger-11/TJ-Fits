@@ -8,7 +8,7 @@ import { closeNotification, updateNotification } from "@/lib/features/userSlice"
 import { feature } from "@/app/interfaces/interface";
 import {useRouter} from "next/navigation";
 
-export const getData = () => {
+export const useGetData = () => {
     const { uid } = useAppSelector((state) => state.user);
     const [wishlist, setWishlist] = useState<any>([]);
 

@@ -1,10 +1,10 @@
 "use client";
 import WishlistItem from "@/components/WishlistItem";
 import { feature } from "@/app/interfaces/interface";
-import {getData} from "@/components/WishlistData";
+import {useGetData} from "@/components/WishlistData";
 
 export default function Wishlist() {
-    const {wishlist} = getData();
+    const {wishlist} = useGetData();
 
     return (
         <div className="p-4">
@@ -13,7 +13,7 @@ export default function Wishlist() {
                 <section className="w-full md:w-4/5 lg:w-3/5 mx-auto flex flex-col gap-3 my-4">
                     {wishlist ?
                         wishlist.map((item: feature) => {
-                            return <WishlistItem item={item}/>
+                            return <WishlistItem item={item} key={item._id}/>
                         }) : 
                         <div>NO PRODUCT IN WISHLIST</div>
                     }
