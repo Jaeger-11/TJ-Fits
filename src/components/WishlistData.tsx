@@ -12,13 +12,23 @@ export const useGetData = () => {
     const { uid } = useAppSelector((state) => state.user);
     const [wishlist, setWishlist] = useState<any>([]);
 
-    const unsub = onSnapshot(doc(db, "users", uid ? uid : ""), (doc) => {
-        setWishlist(doc.data()?.wishlist);
-    });
+    // const unsub = onSnapshot(doc(db, "users", uid), (doc) => {
+    //     setWishlist(doc.data()?.wishlist);
+    // });
+
+    const unsub = () => {
+        if(uid.length > 0){
+            onSnapshot(doc(db, "users", uid), (doc) => {
+                setWishlist(doc.data()?.wishlist);
+            });
+        }
+    }
     
     useEffect(() => {
-        unsub();
-    }, [])
+        // if(uid){
+            unsub();
+        // }
+    }, [uid])
 
     return {wishlist}
 }

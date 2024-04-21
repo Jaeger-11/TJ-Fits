@@ -14,7 +14,7 @@ const WishlistAdd = (data:{product:feature}) => {
     const userRef = doc(db, 'users', uid)
     const dispatch = useAppDispatch();
     const addToWishlist = async () => {
-        if(wishlist.filter((item:feature) => item._id === _id).length > 0){
+        if(wishlist?.filter((item:feature) => item._id === _id).length > 0){
             dispatch(updateNotification({header:name, text: "Already Added To Wishlist", imageUrl}))
             setTimeout(() => {
                 dispatch(closeNotification())
