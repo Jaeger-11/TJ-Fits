@@ -3,9 +3,9 @@ import Back from "@/components/Back";
 export default function Contact(){
     return (
         <div className="p-4">
-            <section className="lg:w-4/5 mx-auto">
+            <section className="lg:w-4/5 mx-auto text-sm md:text-base">
                 <h2 className="w-full text-center lg:text-xl uppercase styreneBold">Contact</h2>
-                <article className="text-sm md:text-base md:w-4/5 lg:w-3/5 mx-auto my-4 flex flex-col gap-2 lh-large">
+                <article className="md:w-4/5 lg:w-3/5 mx-auto my-4 flex flex-col gap-2 lh-large">
                     <p>Thank you for visiting TJ.fits! We&apos;re here to assist you with any questions or concerns you may have. Please feel free to reach out to us using the contact information below, and we&apos;ll get back to you as soon as possible.</p>
                     <div>
                         <h3 className="font-semibold mb-1">Customer Service Hours:</h3>

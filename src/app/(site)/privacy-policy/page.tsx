@@ -8,29 +8,29 @@ export default function PrivacyPolicy() {
                     <ul className="text-sm md:text-base flex flex-col gap-2 ">
                     TJ.Fits respects your privacy and is committed to protecting it. This Privacy Policy outlines the types of personal information we collect when you use our website, how we use and safeguard that information, and your rights regarding your personal data                    
                         <p className="mt-3 mb-1 font-semibold">Information We Collect:</p>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         Personal information such as your name, email address, shipping address, and payment details when you make a purchase.
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         Information collected automatically through cookies and similar tracking technologies, such as your IP address, browsing behavior, and device information.
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         Information you voluntarily provide when contacting customer support or participating in surveys or promotions.
                         </li>
                         <p className="my-2">How We Use Your Information:</p>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         To process and fulfill your orders and provide customer support.                    
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         To communicate with you about your orders, products, promotions, and updates.                    
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         To personalize your shopping experience and improve our website.                    
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         To detect and prevent fraud and unauthorized transactions.                   
                         </li>
-                        <li className="list-disc">
+                        <li className="list-disc ml-4">
                         To comply with legal obligations.                  
                         </li>
                         <p className="my-2">
