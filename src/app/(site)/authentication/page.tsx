@@ -37,22 +37,22 @@ const Authenticate = () => {
         e.preventDefault();
         setErrorInfo('Authenticating...')
         signInWithEmailAndPassword(auth, userData.email, userData.password)
-          .then((userCredential) => {
+        .then((userCredential) => {
             setErrorInfo("")
             dispatch(updateNotification({text:"User Successfully Signed In!", imageUrl: 'show'}))
             setTimeout(() => {
                 dispatch(closeNotification())
             }, 2000);
+            setUserData({email:"", password:"", username: ""})
             router.push('/')
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             const errorMessage = error.message;
             setErrorInfo(errorMessage);
             setTimeout(() => {
                 setErrorInfo("")
             }, 3000);
-          });
-          setUserData({email:"", password:"", username: ""})
+        });   
     }
 
     const createData = async (id:string) => {
@@ -62,7 +62,8 @@ const Authenticate = () => {
     const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setErrorInfo('Creating...')
-        createUserWithEmailAndPassword(auth, userData.email, userData.password)
+        if(userData.email && userData.password && userData.username){
+            createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then((userCredential) => {
                 if(auth.currentUser){
                     updateProfile(auth.currentUser, {
@@ -90,6 +91,12 @@ const Authenticate = () => {
                     setErrorInfo("")
                 }, 3000);
             });
+        } else {
+            setErrorInfo("All Fields Are Required!");
+                setTimeout(() => {
+                    setErrorInfo("")
+                }, 3000);
+        }
     }
 
     const signInWithGoogle = () => {
@@ -137,7 +144,7 @@ const Authenticate = () => {
                     { authType !== 'signin' ?
                     <div>
                         <label htmlFor="username" className="text-sm">Username</label> <br />
-                        <input type="text" placeholder="Username" id="username" name="username" 
+                        <input type="text" required placeholder="Username" id="username" name="username" 
                         onChange={handleInput}
                         className="p-3 my-2 w-full rounded-md text-sm text-lightgray focus:outline-none bg-gray-100 placeholder:text-sm"/>
                     </div> : undefined

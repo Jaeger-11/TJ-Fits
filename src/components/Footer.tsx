@@ -3,15 +3,32 @@ import Link from "next/link";
 import MotionDiv from "./MotionDiv";
 import { useAppDispatch } from "@/lib/hooks";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
+import { useState } from "react";
 
 const Footer = () => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const [email, setEmail] = useState<string>("")
+
+    const validateEmail = (email:string) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      };
     
+    const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
+        let data = target.value
+        if(validateEmail(data)){
+            setEmail(data)
+        }
+    }
+
     const subscribeEmail = () => {
-        dispatch(updateNotification({text:"Subscribed", imageUrl: 'show'}))
-        setTimeout(() => {
-            dispatch(closeNotification())
-        }, 2000);
+        if(email){
+            dispatch(updateNotification({text:"Subscribed", imageUrl: 'show'}))
+            setTimeout(() => {
+                dispatch(closeNotification())
+            }, 2000);
+        }
     }
 
   return (
@@ -51,7 +68,7 @@ const Footer = () => {
                 <h4 className="text-sm md:text-base mb-4">Get the latest news on our products from us</h4>
 
                 <form >
-                    <input className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
+                    <input onChange={handleInput} className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
                     <p className="text-sm md:text-sm my-2 ">By signing up, you agree to our <Link href='/privacy-policy' className="underline hover:text-green-500 hover:font-medium transition-all">Privacy Policy</Link> and <Link href='/terms-of-service' className="underline hover:text-green-500 hover:font-medium transition-all">Terms of Service.</Link> </p>
                     <button type="button" onClick={subscribeEmail} className="px-4 py-3 bg-black rounded-sm text-white text-sm hover:scale-95 transition-all">Subscribe</button>
                 </form>
