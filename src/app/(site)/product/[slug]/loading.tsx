@@ -7,20 +7,11 @@ const loading = () => {
         <Back/>
         <section className="lg:w-4/5 mx-auto">
             <div className="grid gap-4 md:grid-cols-2">
-                {/* <ImageGallery images={images} /> */}
+                <div className='w-4/5 aspect-square bg-[#dddddd] rounded-md'></div>
                 <article className="flex flex-col gap-3 lg:gap-5  py-4 relative">
-                    
-                    <section>
-                        <span className="bg-gray-500 text-sm"></span>
-                        <h3 className="text-2xl styreneBold font-bold capitalize"></h3>
-                    </section>
-                    <section>
-                        <h3 className="text-xl font-bold bg-gray-500" style={{lineHeight:1.2}}></h3>
-                        <p className="text-[10px] bg-gray-500 "></p>
-                    </section>
-                    <section className="flex gap-2 items-center bg-gray-500">
-                    </section>
-                    <p className="line150 text-sm bg-gray-500 w-full"></p>
+                    <h2 className='bg-[#dddddd] h-4 rounded-sm w-full my-4'></h2>
+                    <h2 className='bg-[#dddddd] h-4 rounded-sm w-full my-4'></h2>
+                    <button className='bg-[#dddddd] h-6 rounded-sm w-12 my-4'></button>
                 </article>
             </div>
         </section>
