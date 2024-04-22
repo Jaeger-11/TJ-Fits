@@ -36,7 +36,7 @@ export default function About() {
                         </ul>
                     </section>
                 </article>
-                <article className="grid md:grid-cols-1 gap-3">
+                <article className="grid md:grid-cols-1 gap-3 text-sm md:text-base">
                     <div className="">
                         <Image
                         width={400}
@@ -47,7 +47,7 @@ export default function About() {
                         />
                     </div>
                     <section>
-                        <ul className="text-sm md:text-base">
+                        <ul className="">
                             <p  className="font-semibold my-2">What Sets Us Apart:</p>
                             <li className="list-disc ml-4">
                                 <span className="font-medium">Curated Selection:</span><br />
