@@ -59,9 +59,9 @@ const Navbar = () => {
                 <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>
 
                 <ul className='hidden styrene400 text-gray-500 lg:flex menu-items items-center gap-8 capitalize text-sm'>
-                    <li><Link href="/products" className={pathname === '/products' ? 'text-black underline' : 'text-inherit transition-all'}>shop</Link></li>
-                    <li><Link href="/new-arrivals" className={pathname === '/new-arrivals' ? 'text-black underline' : 'text-inherit transition-all'}>new arrivals</Link></li>
-                    <li><Link href="/contact" className={pathname === '/contact' ? 'text-black underline' : 'text-inherit transition-all'}>contact</Link></li>
+                    <li><Link href="/products" className={pathname === '/products' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-black'}>shop</Link></li>
+                    <li><Link href="/new-arrivals" className={pathname === '/new-arrivals' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-black'}>new arrivals</Link></li>
+                    <li><Link href="/contact" className={pathname === '/contact' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-black'}>contact</Link></li>
                 </ul>
             </section>
 

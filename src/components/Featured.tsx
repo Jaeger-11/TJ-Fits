@@ -9,9 +9,9 @@ const Featured = async () => {
   return (
     <div className="p-4 py-8 bg-white md:py-8">
         <section className="lg:w-4/5 mx-auto">
-            <p className="styrene400 md:w-2/3 lg:w-1/2 line150 text-sm">
+            <p className="styrene400 md:w-2/3 line150 text-sm">
             Elevate your lifestyle with a more intelligent, superior wardrobe. 
-            Our range is crafted sustainably with longevity in mind.
+            Our range is crafted sustainably with longevity in mind. Our carefully curated selection of clothing reflects the latest trends while embracing timeless elegance, allowing you to effortlessly elevate your wardrobe with pieces that speak to your individuality.
             </p>
             <div className="flex flex-col md:flex-row gap-4 lg:gap-8 justify-center my-6 lg:my-12 features">
                 {

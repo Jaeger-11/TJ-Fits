@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
         <div className="p-4">
             <section className="lg:w-4/5 mx-auto">
                 <h2 className="w-full lg:text-xl text-center uppercase styreneBold">Privacy Policy</h2>
-                <article className="md:w-4/5 lg:w-3/5 mx-auto my-4 lh-large">
+                <article className="md:w-4/5 lg:w-3/5 mx-auto my-4">
                     <ul className="text-sm md:text-base flex flex-col gap-2 ">
                     TJ.Fits respects your privacy and is committed to protecting it. This Privacy Policy outlines the types of personal information we collect when you use our website, how we use and safeguard that information, and your rights regarding your personal data                    
                         <p className="mt-3 mb-1 font-semibold">Information We Collect:</p>

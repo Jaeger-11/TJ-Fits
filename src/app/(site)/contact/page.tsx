@@ -24,8 +24,8 @@ export default function Contact(){
                     <p>We strive to provide exceptional customer service and are dedicated to ensuring your shopping experience with us is enjoyable. Whether you have inquiries about our products, assistance with an order, or simply want to share feedback, we&apos;re here to help.</p>
                     <div>
                         <h3 className="font-semibold mb-1">Stay connected with us on social media for the latest updates, promotions, and style inspiration:</h3>
-                        <a href="/" className="text-green-500 underline block">Twitter</a><br />
-                        <a href="/" className="text-green-500 underline block">Instagram</a>
+                        <a href="https://www.instagram.com/tjfits__/" className="text-green-500 underline">Twitter</a><br />
+                        <a href="https://www.instagram.com/tjfits__/" className="text-green-500 underline">Instagram</a>
                     </div>
                     <p>Thank you for choosing TJ.fits. We look forward to serving you!</p>
                 </article>
