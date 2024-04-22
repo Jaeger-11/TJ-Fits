@@ -6,7 +6,7 @@ export default function Contact(){
             <section className="lg:w-4/5 mx-auto">
                 <h2 className="w-full text-center lg:text-xl uppercase styreneBold">Contact</h2>
                 <article className="text-sm md:text-base md:w-4/5 lg:w-3/5 mx-auto my-4 flex flex-col gap-2">
-                    <p>Thank you for visiting TJ.fits! We're here to assist you with any questions or concerns you may have. Please feel free to reach out to us using the contact information below, and we'll get back to you as soon as possible.</p>
+                    <p>Thank you for visiting TJ.fits! We&apos;re here to assist you with any questions or concerns you may have. Please feel free to reach out to us using the contact information below, and we&apos;ll get back to you as soon as possible.</p>
                     <div>
                         <h3 className="font-semibold mb-1">Customer Service Hours:</h3>
                         <p>Monday - Saturday: 9:00 AM - 5:00 PM GMT +1</p>
@@ -21,7 +21,7 @@ export default function Contact(){
                         <p>Lekki Phase 1, No 14 Armando Close.</p>
                         <p>Lagos</p>
                     </div>
-                    <p>We strive to provide exceptional customer service and are dedicated to ensuring your shopping experience with us is enjoyable. Whether you have inquiries about our products, assistance with an order, or simply want to share feedback, we're here to help.</p>
+                    <p>We strive to provide exceptional customer service and are dedicated to ensuring your shopping experience with us is enjoyable. Whether you have inquiries about our products, assistance with an order, or simply want to share feedback, we&apos;re here to help.</p>
                     <div>
                         <h3 className="font-semibold mb-1">Stay connected with us on social media for the latest updates, promotions, and style inspiration:</h3>
                         <a href="/" className="text-green-500 underline block">Twitter</a><br />

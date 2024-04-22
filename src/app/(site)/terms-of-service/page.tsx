@@ -13,7 +13,7 @@ export default function Terms() {
                     </li>
                     <li className="list-decimal">
                     <span className="font-semibold mb-1">Product Information: </span> <br />
-                    We make every effort to accurately display product images and descriptions. However, we cannot guarantee that your computer monitor's display will accurately represent the products.
+                    We make every effort to accurately display product images and descriptions. However, we cannot guarantee that your computer monitor&apos;s display will accurately represent the products.
                     </li>
                     <li className="list-decimal">
                     <span className="font-semibold mb-1">Pricing and Payment:</span><br />
