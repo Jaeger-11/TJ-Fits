@@ -4,7 +4,7 @@ export default function Terms() {
         <div className="p-4">
             <section className="lg:w-4/5 mx-auto">
                 <h2 className="w-full lg:text-xl text-center uppercase styreneBold">Terms Of Service</h2>
-                <article className="md:w-4/5 lg:w-3/5 mx-auto my-4">
+                <article className="md:w-4/5 lg:w-3/5 mx-auto my-4 lh-large">
                     <ul className="text-sm md:text-base flex flex-col gap-2">
                     By using our website, you agree to comply with these Terms of Service. Please read them carefully before accessing or using our website.
                     <li className="list-decimal">
