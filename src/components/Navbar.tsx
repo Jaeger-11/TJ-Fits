@@ -88,14 +88,14 @@ const Navbar = () => {
 
             {
                 isMenu && 
-                <section className="lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-2">
-                    <ul className='styrene400 flex flex-col menu-items gap-2 capitalize'>
+                <section className="lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-3">
+                    <ul className='styrene400 flex flex-col menu-items gap-3 capitalize'>
                         <li><Link onClick={() => setIsMenu(false)} href="/products" className={pathname === '/products' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>shop</Link></li>
                         <li><Link onClick={() => setIsMenu(false)} href="/new-arrivals" className={pathname === '/new-arrivals' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>new arrivals</Link></li>
                         <li><Link onClick={() => setIsMenu(false)} href="/contact" className={pathname === '/contact' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>contact</Link></li>
                     </ul>
                     
-                    <div className='flex gap-2'>
+                    <div className='flex gap-3'>
                         {email ? 
                         <div className="flex flex-col w-full items-end gap-2">
                             <div className="flex items-center gap-1">
