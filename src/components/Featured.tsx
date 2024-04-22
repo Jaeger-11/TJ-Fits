@@ -20,7 +20,7 @@ const Featured = async () => {
                         return (
                             // <section key={_id}>
                                 <MotionDiv
-                                initial={{opacity:0, y:30}}
+                                initial={{opacity:0, y:50}}
                                 whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
                                 whileHover={{scale:1.05}}
                                 key={_id}

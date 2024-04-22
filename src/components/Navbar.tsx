@@ -49,8 +49,8 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-    initial={{y:-20}}
-    whileInView={{y:0, transition:{duration:0.5}}}
+    initial={{y:-50}}
+    whileInView={{y:0, transition:{duration:1}}}
     className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
          <Toast/>
         <div className=' lg:w-4/5 mx-auto justify-between flex flex-row-reverse items-center lg:flex-row'>

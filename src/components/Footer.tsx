@@ -1,7 +1,19 @@
+'use client'
 import Link from "next/link";
 import MotionDiv from "./MotionDiv";
+import { useAppDispatch } from "@/lib/hooks";
+import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 
 const Footer = () => {
+    const dispatch = useAppDispatch()
+    
+    const subscribeEmail = () => {
+        dispatch(updateNotification({text:"Subscribed", imageUrl: 'show'}))
+        setTimeout(() => {
+            dispatch(closeNotification())
+        }, 2000);
+    }
+
   return (
     <div
     className="bg-[#DDDDDD] p-4 py-8 lg:py-12">
@@ -20,10 +32,10 @@ const Footer = () => {
                 <section className="styrene400">
                     <h3 className="font-bold text-xs text-gray-500 uppercase">Company</h3>
                     <ul className="flex flex-col gap-3 mt-4 text-sm">
-                        <Link href="/">About us</Link>
-                        <Link href='/contact'>Contact us</Link>
-                        <Link href="/">Privacy Policy</Link>
-                        <Link href="/">Terms and Conditions</Link>
+                        <Link href="/about" className="hover:text-green-500 hover:font-medium transition-all">About us</Link>
+                        <Link href='/contact' className="hover:text-green-500 hover:font-medium transition-all">Contact us</Link>
+                        <Link href="/privacy-policy" className="hover:text-green-500 hover:font-medium transition-all">Privacy Policy</Link>
+                        <Link href="/terms-of-service" className="hover:text-green-500 hover:font-medium transition-all">Terms and Conditions</Link>
                     </ul>
                 </section>
                 <section>
@@ -36,8 +48,8 @@ const Footer = () => {
 
                 <form >
                     <input className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
-                    <p className="text-sm md:text-sm my-2 ">By signing up, you agree to our <Link href='/' className="underline">Privacy Policy</Link> and <Link href='/' className="underline">Terms of Service.</Link> </p>
-                    <button className="px-4 py-3 bg-black rounded-sm text-white text-sm hover:scale-95 transition-all">Subscribe</button>
+                    <p className="text-sm md:text-sm my-2 ">By signing up, you agree to our <Link href='/privacy-policy' className="underline hover:text-green-500 hover:font-medium transition-all">Privacy Policy</Link> and <Link href='/terms-of-service' className="underline hover:text-green-500 hover:font-medium transition-all">Terms of Service.</Link> </p>
+                    <button type="button" onClick={subscribeEmail} className="px-4 py-3 bg-black rounded-sm text-white text-sm hover:scale-95 transition-all">Subscribe</button>
                 </form>
             </section>
         </MotionDiv>
