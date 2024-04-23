@@ -90,7 +90,7 @@ const Navbar = () => {
                 // isMenu && 
                 <MotionDiv
                 initial={isMenu ? {opacity:0, y:-20} : {opacity:1, y:0}}
-                animate={isMenu ? {opacity:1, y:0, transition:{duration:0.4, ease:'easeIn'}} : {opacity:1, y:-300}} 
+                animate={isMenu ? {opacity:1, y:0, transition:{duration:0.4, ease:'easeIn'}} : {opacity:0, y:-300}} 
                 className={`lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-3`}>
                     <ul className='styrene400 flex flex-col menu-items gap-3 capitalize'>
                         <li><Link onClick={() => setIsMenu(false)} href="/products" className={pathname === '/products' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>shop</Link></li>
