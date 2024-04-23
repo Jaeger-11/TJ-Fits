@@ -89,7 +89,7 @@ const Navbar = () => {
             {
                 // isMenu && 
                 <MotionDiv
-                initial={isMenu ? {opacity:0, y:-20} : {opacity:1, y:0}}
+                initial={isMenu ? {opacity:0, y:-20} : {opacity:0, y:0}}
                 animate={isMenu ? {opacity:1, y:0, transition:{duration:0.4, ease:'easeIn'}} : {opacity:0, y:-300}} 
                 className={`lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-3`}>
                     <ul className='styrene400 flex flex-col menu-items gap-3 capitalize'>
