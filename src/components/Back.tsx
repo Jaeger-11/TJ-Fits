@@ -7,7 +7,7 @@ export default function Back(){
     const searchParams = useSearchParams();
     const goBack = () => {
         if(pathname.includes('/product')){
-            router.replace('/products', undefined, { shallow: true });
+            router.replace('/products', undefined);
         } else {
             router.back()
         }
