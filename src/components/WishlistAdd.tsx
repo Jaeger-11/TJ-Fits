@@ -6,34 +6,41 @@ import { db } from "@/database/config";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useAppSelector } from "@/lib/hooks";
 import { useGetData } from "./WishlistData";
+import { useRouter } from "next/navigation";
 
 const WishlistAdd = (data:{product:feature}) => {
+    const router = useRouter();
     const {wishlist} = useGetData();
     const { uid } = useAppSelector((state) => state.user);
     const {name, price, imageUrl, _id, slug} = data.product;
-    // const userRef = doc(db, 'users', uid)
     const dispatch = useAppDispatch();
     const addToWishlist = async () => {
+      if(uid.length > 0){
         if(wishlist?.filter((item:feature) => item._id === _id).length > 0){
-            dispatch(updateNotification({header:name, text: "Already Added To Wishlist", imageUrl}))
+          dispatch(updateNotification({header:name, text: "Already Added To Wishlist", imageUrl}))
+          setTimeout(() => {
+              dispatch(closeNotification())
+          }, 2000);
+      } else {
+          try {
+            await updateDoc(doc(db, 'users', uid), {
+                wishlist: arrayUnion({name, price, imageUrl, slug, _id})
+            });
+            dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
             setTimeout(() => {
                 dispatch(closeNotification())
             }, 2000);
-        } else {
-          if(uid.length > 0){
-            try {
-              await updateDoc(doc(db, 'users', uid), {
-                  wishlist: arrayUnion({name, price, imageUrl, slug, _id})
-              });
-              dispatch(updateNotification({header:name, text: "Added To Wishlist", imageUrl}))
-              setTimeout(() => {
-                  dispatch(closeNotification())
-              }, 2000);
-            } catch (e) {
-              console.error("Error adding document: ", e);
-            }
+          } catch (e) {
+            console.error("Error adding document: ", e);
           }
-        }
+      }
+      } else {
+        dispatch(updateNotification({text:"Sign In to Add to Wishlist!"}))
+        setTimeout(() => {
+            dispatch(closeNotification())
+        }, 2000);
+        router.push('/authentication') 
+      }
     }
   return (
     <div className="flex gap-1 items-center border py-1 px-2 w-max font-medium hover:bg-gray-100 hover:scale-105 hover:font-semibold">

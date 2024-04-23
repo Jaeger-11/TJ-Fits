@@ -20,7 +20,7 @@ const AddButton = (data:{product:feature, style: string}) => {
                   dispatch(closeNotification())
               }, 2000);
               }  else { 
-                dispatch(updateNotification({text:"Sign In / Create Account To Add to Cart!"}))
+                dispatch(updateNotification({text:"Sign In To Add to Cart!"}))
                 setTimeout(() => {
                     dispatch(closeNotification())
                 }, 2000);
