@@ -135,8 +135,8 @@ const Authenticate = () => {
     }
 
   return (
-    <div className="">
-        <div className="md:flex md:h-max md:my-12 rounded-lg overflow-hidden w-full md:w-3/5 lg:max-w-[500px] mx-auto">
+    <div className=" md:py-12">
+        <div className="md:flex md:h-max rounded-lg overflow-hidden w-full md:w-3/5 lg:max-w-[500px] mx-auto">
         <section className="p-4 bg-white sm:p-8 md:relative md:flex md:justify-center md:items-center md:flex-1 md:p-0">
             <article className="md:w-[90%] lg:w-3/4 py-8">
                 <h2 className="text-xl text-center font-bold sm:text-2xl md:text-3xl styreneBold"> TJ.<span className="text-green-500">FITS</span> </h2>

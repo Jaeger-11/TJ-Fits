@@ -33,14 +33,14 @@ const Footer = () => {
 
   return (
     <div
-    className="bg-[#DDDDDD] p-4 py-8 lg:py-12">
+    className="bg-[#DDDDDD] p-4 smd:p-6 py-8 lg:py-12">
         <MotionDiv 
         initial={{opacity:0, y:50}}
         whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
-        className=' lg:w-4/5 mx-auto justify-between flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row'>
-            <section className="flex gap-4">
+        className='lg:w-4/5 mx-auto justify-between flex flex-col-reverse gap-8 md:gap-0 md:flex-row'>
+            <section className="flex gap-4 justify-between flex-row-reverse smd:justify-normal smd:flex-row smd:gap-8 md:gap-12 lg:gap-16">
                 <div className="flex flex-col justify-between">
-                    <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.FITS</Link>
+                    <Link href="/" className='font-bold text-xl md:text-2xl'>TJ.<span className="text-green-500">FITS</span> </Link>
                     <section className="flex gap-1 md:gap-3 social-icons styrene400">
                         <a href="https://www.instagram.com/tjfits__/">
                             <svg className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="21" height="18"><path fill="#000" d="M20.667 2.797a8.192 8.192 0 01-2.357.646 4.11 4.11 0 001.804-2.27 8.22 8.22 0 01-2.606.996A4.096 4.096 0 0014.513.873c-2.649 0-4.595 2.472-3.997 5.038a11.648 11.648 0 01-8.457-4.287 4.109 4.109 0 001.27 5.478A4.086 4.086 0 011.47 6.59c-.045 1.901 1.317 3.68 3.29 4.075a4.113 4.113 0 01-1.853.07 4.106 4.106 0 003.834 2.85 8.25 8.25 0 01-6.075 1.7 11.616 11.616 0 006.29 1.843c7.618 0 11.922-6.434 11.662-12.205a8.354 8.354 0 002.048-2.124z"/></svg>
@@ -53,14 +53,11 @@ const Footer = () => {
                 <section className="styrene400">
                     <h3 className="font-bold text-xs text-gray-500 uppercase">Company</h3>
                     <ul className="flex flex-col gap-2 mt-4 text-sm">
-                        <Link href="/about" className="hover:text-green-500 hover:font-medium transition-all">About us</Link>
-                        <Link href='/contact' className="hover:text-green-500 hover:font-medium transition-all">Contact us</Link>
-                        <Link href="/privacy-policy" className="hover:text-green-500 hover:font-medium transition-all">Privacy Policy</Link>
-                        <Link href="/terms-of-service" className="hover:text-green-500 hover:font-medium transition-all">Terms and Conditions</Link>
+                        <Link href="/about" className="hover:text-green-500 hover:font-medium transition-all w-max">About us</Link>
+                        <Link href='/contact' className="hover:text-green-500 hover:font-medium transition-all w-max">Contact us</Link>
+                        <Link href="/privacy-policy" className="hover:text-green-500 hover:font-medium transition-all w-max">Privacy Policy</Link>
+                        <Link href="/terms-of-service" className="hover:text-green-500 hover:font-medium transition-all w-max">Terms and Conditions</Link>
                     </ul>
-                </section>
-                <section>
-
                 </section>
             </section>
 

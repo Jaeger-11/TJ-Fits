@@ -11,7 +11,7 @@ const Accessories = async () => {
      <MotionDiv 
      initial={{opacity:0, y:50}}
      whileInView={{opacity:1, y:0, transition:{duration:1}}}
-     className="p-4 mt-8 lg:mt-0 lg:py-8">
+     className="p-4 smd:p-6 mt-8 lg:mt-0 lg:py-8">
         <div className="md:w-4/5 mx-auto">
             <h3 className="capitalize styreneBold">Check out our Accessories</h3>
             <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-8 my-8">

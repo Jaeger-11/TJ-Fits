@@ -13,7 +13,7 @@ export default async function Products(params: {
     const categories = await getAllCategories();
 
     return (
-    <div className="p-4">
+    <div className="p-4 smd:p-6 md:p-8">
         <section className="lg:w-4/5 mx-auto">
             <h1 className="text-center w-full uppercase lg:text-xl styrene400 mb-4 ">Products</h1>
             
@@ -27,7 +27,7 @@ export default async function Products(params: {
                 </aside>
 
                 <main className="flex-1">
-                    <section className="md:grid-cols-3 lg:grid-cols-4 grid grid-cols-2 gap-4 ">
+                    <section className="smd:grid-cols-3 lg:grid-cols-4 grid grid-cols-2 gap-4 ">
                         <ProductsData data={products}/>
                     </section>
                 </main>

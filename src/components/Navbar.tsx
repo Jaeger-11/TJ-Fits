@@ -11,7 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setUser, updateNotification, closeNotification } from "@/lib/features/userSlice";
 import { clearCart } from "@/lib/features/cartSlice";
 import Toast from "./Toast";
-import { motion } from 'framer-motion';
+import MotionDiv from "./MotionDiv";
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ const Navbar = () => {
     }
 
   return (
-    <motion.nav 
+    <MotionDiv 
     initial={{y:-50}}
     whileInView={{y:0, transition:{duration:1}}}
     className='p-4 bg-white sticky top-0 z-50 shadow-sm'>
@@ -87,8 +87,11 @@ const Navbar = () => {
             </section>
 
             {
-                isMenu && 
-                <section className="lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-3">
+                // isMenu && 
+                <MotionDiv
+                initial={isMenu ? {opacity:0, y:-20} : {opacity:1, y:0}}
+                animate={isMenu ? {opacity:1, y:0, transition:{duration:0.4, ease:'easeIn'}} : {opacity:1, y:-300}} 
+                className={`lg:hidden absolute top-[100%] bg-white w-full border-y left-0 p-4 flex flex-col gap-3`}>
                     <ul className='styrene400 flex flex-col menu-items gap-3 capitalize'>
                         <li><Link onClick={() => setIsMenu(false)} href="/products" className={pathname === '/products' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>shop</Link></li>
                         <li><Link onClick={() => setIsMenu(false)} href="/new-arrivals" className={pathname === '/new-arrivals' ? 'text-green-500 underline' : 'text-inherit transition-all hover:text-gray-700'}>new arrivals</Link></li>
@@ -108,7 +111,7 @@ const Navbar = () => {
                         <Link href='/authentication' onClick={() => setIsMenu(false)} className='px-6 py-2 bg-black text-white font-bold rounded-sm hover:scale-105 transition-all'>LOGIN</Link>
                         }
                     </div>
-                </section>
+                </MotionDiv>
             }
 
             <div className="lg:hidden">
@@ -124,7 +127,7 @@ const Navbar = () => {
                 }
             </div>
         </div>
-    </motion.nav>
+    </MotionDiv>
   )
 }
 
