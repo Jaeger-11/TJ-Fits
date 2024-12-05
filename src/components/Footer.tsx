@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <div
-    className="bg-[#DDDDDD] p-4 smd:p-6 py-8 lg:py-12">
+    className="bg-black text-white p-4 smd:p-6 py-8 lg:py-12">
         <MotionDiv 
         initial={{opacity:0, y:50}}
         whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
@@ -67,7 +67,7 @@ const Footer = () => {
                 <form >
                     <input onChange={handleInput} className="w-full p-2" type="email" name="email" id="email" placeholder="Enter your email address" />
                     <p className="text-sm md:text-sm my-2 ">By signing up, you agree to our <Link href='/privacy-policy' className="underline hover:text-green-500 hover:font-medium transition-all">Privacy Policy</Link> and <Link href='/terms-of-service' className="underline hover:text-green-500 hover:font-medium transition-all">Terms of Service.</Link> </p>
-                    <button type="button" onClick={subscribeEmail} className="px-4 py-3 bg-black rounded-sm text-white text-sm hover:scale-95 transition-all">Subscribe</button>
+                    <button type="button" onClick={subscribeEmail} className="px-4 py-3 bg-green-500 rounded-sm text-black text-sm hover:scale-95 transition-all">Subscribe</button>
                 </form>
             </section>
         </MotionDiv>
