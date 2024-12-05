@@ -12,7 +12,7 @@ const Pay = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { contactShippingInfo, uid, email } = useAppSelector((state) => state.user);
-    const { subTotal } = useAppSelector((state) => state.cart)
+    const { cartItems, subTotal } = useAppSelector((state) => state.cart)
     const { contact, alternative, firstName, lastName, state, address } = contactShippingInfo;
     const shippingOptions = [
         {
@@ -22,7 +22,7 @@ const Pay = () => {
         }, 
         {
             name: "Express Delivery",
-            info: "1 - 2 day(s)",
+            info: "1 - 2 days",
             cost: 5000
         }
     ]
@@ -49,12 +49,30 @@ const Pay = () => {
 
     const handleFlutterPayment = useFlutterwave(config);
 
+    const sendUserConfirmation = async () => {
+        let response = await fetch('http://localhost:3000/cart/pay/api', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: `${firstName} ${lastName}`,
+                address: email,
+                cartItems,
+                contactShippingInfo,
+                deliveryFee: option.cost,
+                total,
+                subTotal
+            })
+        })
+        const data = await response.json();
+        // console.log(data);
+    }
+
     const payNow = () => {
         handleFlutterPayment({
             callback: (response) => {
             //   console.log(response);
               if(response.status === "successful"){
                 dispatch(updateNotification({text:"Payment Successful!", imageUrl: 'show'}))
+                sendUserConfirmation()
                 setTimeout(() => {
                     dispatch(closeNotification())
                 }, 2000);
@@ -68,17 +86,18 @@ const Pay = () => {
     }
 
   return (
-    <div className="lg:my-4 p-4">
+    <div className="lg:my-4 p-4 bg-white">
         <div className="md:w-3/5 lg:w-1/2 mx-auto text-sm">
+            <h2 className='uppercase mb-2 font-semibold text-lg text-right'>Shipping Information</h2>
             <section className=' p-2 border border-black mb-4'>
-                <article className='flex gap-4 items-center text-gray-600'>
+                <article className='flex gap-4 items-center text-black'>
                     <h1 className=" text-black text-sm capitalize">Contact</h1>
                     <div>
                         {contact + ' | ' + alternative}
                     </div>
                 </article>
                 <hr  className='my-2 bg-black h-[1px]'/>
-                <article className="flex gap-4 items-center text-gray-600">
+                <article className="flex gap-4 items-center text-black">
                     <h1 className="text-black  text-sm capitalize"> Ship To</h1>
                     <section>
                         {state + ', ' + address}
@@ -91,7 +110,7 @@ const Pay = () => {
                 <section className='mt-2 p-2 border border-black mb-4 flex flex-col gap-3'>
                     {shippingOptions.map((item, index) => {
                         return (
-                            <article key={index} className='flex gap-4 items-center text-gray-600'>
+                            <article key={index} className='flex gap-4 items-center text-black'>
                                 <div onClick={() => setOption(shippingOptions[index])} className={`${option.name === item.name ? 'bg-black flex items-center justify-center' : 'bg-white'} w-4 aspect-square rounded-full transition-all border-black border cursor-pointer`}>
                                     <p className={`${option.name === item.name ? 'bg-white w-2 aspect-square' : 'bg-none'} rounded-full transition-all`}></p>
                                 </div>
@@ -126,7 +145,7 @@ const Pay = () => {
             
 
             <div className="flex justify-between items-end mt-2">
-                <Link href='/cart/shipping' className="underline text-xs transition-all hover:text-green-500">Back To Shipping Information</Link>
+                <Link href='/cart/shipping' className="underline text-xs sm:text-sm transition-all hover:text-green-500">Back To Shipping Information</Link>
                 <button onClick={payNow} className=" text-sm bg-black transition-all rounded-sm text-white px-4 py-2 md:px-6 hover:scale-95">Pay Now</button>
             </div>
         </div>
