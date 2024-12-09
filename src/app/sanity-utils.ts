@@ -88,3 +88,17 @@ export const getAllCategories = async () => {
 export const currencyFormat = (price: number | undefined) => {
     return new Intl.NumberFormat('en-US').format(typeof(price) === 'number' ? price : 0)
 }
+
+export const getDate = (additionalDays:number = 0) => {
+    const timestamp = Date.now(); // Current timestamp
+    const date = new Date(timestamp); // Convert to Date object
+
+    // Add the additional days
+    date.setDate(date.getDate() + additionalDays);
+
+    const day = date.getDate(); 
+    const month = date.toLocaleString('default', { month: 'long' }); // Full month name
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`; 
+};

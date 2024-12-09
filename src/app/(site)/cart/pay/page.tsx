@@ -7,12 +7,15 @@ import { clearCart } from '@/lib/features/cartSlice';
 import { useRouter } from 'next/navigation';
 import { updateNotification, closeNotification } from '@/lib/features/userSlice';
 import { useState } from 'react';
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/database/config";
+import { getDate } from '@/app/sanity-utils';
 
 const Pay = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { contactShippingInfo, uid, email } = useAppSelector((state) => state.user);
-    const { cartItems, subTotal } = useAppSelector((state) => state.cart)
+    const { cartItems, subTotal } = useAppSelector((state) => state.cart);
     const { contact, alternative, firstName, lastName, state, address } = contactShippingInfo;
     const shippingOptions = [
         {
@@ -54,16 +57,24 @@ const Pay = () => {
             method: 'POST',
             body: JSON.stringify({
                 name: `${firstName} ${lastName}`,
-                address: email,
+                email,
                 cartItems,
                 contactShippingInfo,
                 deliveryFee: option.cost,
                 total,
-                subTotal
+                subTotal,
             })
         })
         const data = await response.json();
         // console.log(data);
+    }
+
+    const saveOrder = async () => {
+        try {
+            await addDoc(collection(db, "orders"), {order:cartItems, uid, shippingInformation: contactShippingInfo, orderDate: getDate()})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const payNow = () => {
@@ -72,11 +83,12 @@ const Pay = () => {
             //   console.log(response);
               if(response.status === "successful"){
                 dispatch(updateNotification({text:"Payment Successful!", imageUrl: 'show'}))
-                sendUserConfirmation()
+                saveOrder();
+                sendUserConfirmation();
                 setTimeout(() => {
-                    dispatch(closeNotification())
+                    dispatch(closeNotification());
                 }, 2000);
-                router.push('/')
+                router.push('/products')
                 dispatch(clearCart());
               }
               closePaymentModal();
@@ -86,7 +98,7 @@ const Pay = () => {
     }
 
   return (
-    <div className="lg:my-4 p-4 bg-white">
+    <div className="lg:py-8 p-4 bg-white">
         <div className="md:w-3/5 lg:w-1/2 mx-auto text-sm">
             <h2 className='uppercase mb-2 font-semibold text-lg text-right'>Shipping Information</h2>
             <section className=' p-2 border border-black mb-4'>

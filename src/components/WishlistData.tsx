@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { onSnapshot, doc, updateDoc, arrayRemove } from "firebase/firestore";
 import { db } from "@/database/config";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { updateWishlist } from "@/lib/features/userSlice";
+// import { updateWishlist } from "@/lib/features/userSlice";
 import { closeNotification, updateNotification } from "@/lib/features/userSlice";
 import { feature } from "@/app/interfaces/interface";
 import {useRouter} from "next/navigation";

@@ -1,26 +1,11 @@
 import { feature } from "@/app/interfaces/interface";
 import { sendMail } from "@/lib/utils";
+import { getDate } from "@/app/sanity-utils";
 import { currencyFormat } from "@/app/sanity-utils";
 
 export async function POST(request: Request) {
 
-    const getDate = (additionalDays:number = 0) => {
-        const timestamp = Date.now(); // Current timestamp
-        const date = new Date(timestamp); // Convert to Date object
-    
-        // Add the additional days
-        date.setDate(date.getDate() + additionalDays);
-    
-        const day = date.getDate(); // Day of the month
-        const month = date.toLocaleString('default', { month: 'long' }); // Full month name
-        const year = date.getFullYear(); // Year
-    
-        return `${day} ${month} ${year}`; 
-    };
-    
-
     const user = await request.json();
-    // console.log(user)
     const sender = {
         name: 'TJ.FITS',
         address: 'damifalodun@gmail.com'
@@ -81,7 +66,7 @@ export async function POST(request: Request) {
       <p style="color: red; font-weight: bold; font-size: 16px"><strong>Total:</strong> &#8358;${currencyFormat(user.total)}</p>
       <hr>
       <h3>Shipping Information:</h3>
-      <p>${user.name}<br>${user.contactShippingInfo.address}<br>${user.contactShippingInfo.state}</p>
+      <p>${user.name}<br> ${user.email} <br> ${user.contact} <br> ${user.contactShippingInfo.address}<br>${user.contactShippingInfo.state}</p>
       <p><strong>Estimated Delivery:</strong> ${getDate(3)}</p>
       <a class="btn" href="tracking-link">Track My Order</a>
       <hr>

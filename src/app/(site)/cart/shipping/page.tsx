@@ -1,34 +1,25 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { infoData } from "@/app/interfaces/interface";
 import { updateInfo } from "@/lib/features/userSlice";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import MotionDiv from "@/components/MotionDiv";
+import { infoData } from "@/app/interfaces/interface";
 
 const ShippingInfo = () => {
+    const { contactShippingInfo } = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const [info, setInfo] = useState<infoData>({
-        contact: "",
-        alternative: "",
-        firstName: "",
-        lastName: "",
-        state: "",
-        address: ""
-    })
     const [errorText, setErrorText] = useState<string>("");
 
     const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
-        let newInfo = { [target.name] : target.value }
-        setInfo({...info, ...newInfo})
+        dispatch(updateInfo({name:target.name as keyof infoData, value:target.value}))
     }
 
     const submitInfo = () => {
-        const { contact, alternative, firstName, lastName, state, address } = info
+        const { contact, alternative, firstName, lastName, state, address } = contactShippingInfo;
         if( contact && alternative && firstName && lastName && state && address ){
-            dispatch(updateInfo(info));
             router.push('/cart/pay')
         } else setErrorText("All fields are required!")
         setTimeout(() => {
@@ -40,13 +31,13 @@ const ShippingInfo = () => {
     <MotionDiv 
     initial={{opacity:0, y:50}}
     whileInView={{opacity:1, y:0, transition:{duration:1}}}
-    className="lg:my-4 p-4">
+    className="lg:py-8 p-4">
         <form className="md:w-3/5 lg:w-1/2 mx-auto shipping">
             <section>
                 <h1 className="mb-2 text-gray-600 text-sm uppercase">Contact Information</h1>
                 <div>
-                    <input type="text" onChange={handleInput} name="contact" required id="contact" placeholder="Mobile Phone Number"/>
-                    <input type="text" onChange={handleInput} className="mt-2" required name="alternative" id="alternative" placeholder="Alternative Email or Mobile Phone Number"/>
+                    <input type="text" value={contactShippingInfo.contact} onChange={handleInput} name="contact" required id="contact" placeholder="Mobile Phone Number"/>
+                    <input type="text" value={contactShippingInfo.alternative} onChange={handleInput} className="mt-2" required name="alternative" id="alternative" placeholder="Alternative Email or Mobile Phone Number"/>
                 </div>
             </section>
 
@@ -54,14 +45,14 @@ const ShippingInfo = () => {
                 <h1 className="mb-2 text-gray-600 text-sm uppercase"> Shipping Address</h1>
                 <section>
                     <div className="grid grid-cols-2 gap-1">
-                        <input type="text" onChange={handleInput} name="firstName" required id="firstName" placeholder="First name"/>
-                        <input type="text" onChange={handleInput} name="lastName" required id="lastName" placeholder="Last name"/>
+                        <input type="text" value={contactShippingInfo.firstName} onChange={handleInput} name="firstName" required id="firstName" placeholder="First name"/>
+                        <input type="text" value={contactShippingInfo.lastName} onChange={handleInput} name="lastName" required id="lastName" placeholder="Last name"/>
                     </div>
                     <div className="my-2">
-                        <input type="text" onChange={handleInput} name="state" required id="state" placeholder="State, LGA" />
+                        <input type="text" value={contactShippingInfo.state} onChange={handleInput} name="state" required id="state" placeholder="State, LGA" />
                     </div>
                     <div>
-                        <input type="text" onChange={handleInput} name="address" required id="address" placeholder="City, Apartment Address..." />
+                        <input type="text" value={contactShippingInfo.address} onChange={handleInput} name="address" required id="address" placeholder="City, Apartment Address..." />
                     </div>
                 </section>
                 <p className="text-xs text-red-500 mt-2">{errorText}</p>

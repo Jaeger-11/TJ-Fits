@@ -1,20 +1,29 @@
 "use client";
 import { auth } from "@/database/config";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { user } from "@/app/interfaces/interface";
+import { infoData } from "@/app/interfaces/interface";
+
+let parsedShippingAddress:infoData = {
+    contact: '',
+    alternative: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    state: ''
+};
+
+if(typeof window !== 'undefined'){
+    // now access your localStorage
+    const shippingAddress = localStorage.getItem('shippingAddress');
+    parsedShippingAddress = shippingAddress ? JSON.parse(shippingAddress) : {};
+}
 
 const initialState:user = {
     username: auth.currentUser?.displayName || "",
     uid: auth.currentUser?.uid || "",
     email: auth.currentUser?.email || "",
-    contactShippingInfo: {
-        contact: "",
-        alternative: "",
-        firstName: "",
-        lastName: "",
-        state: "",
-        address: ""
-    },
+    contactShippingInfo: parsedShippingAddress,
     notify: false,
     toastContent: {
         imageUrl: "",
@@ -38,8 +47,10 @@ const userSlice = createSlice({
             state.email = ''
             state.uid = ''
         }, 
-        updateInfo: (state, {payload}) => {
-            state.contactShippingInfo = payload
+        updateInfo: (state, {payload}: PayloadAction<{name: keyof infoData; value: string}>) => {
+            const { name, value } = payload;
+            state.contactShippingInfo[name] = value;
+            localStorage.setItem("shippingAddress", JSON.stringify(state.contactShippingInfo));
         },
         clearNotification: (state) => {
             state.toastContent = {
@@ -64,4 +75,4 @@ const userSlice = createSlice({
 
 export const {setUser, logOut, updateInfo, closeNotification, updateNotification, clearNotification, updateWishlist} = userSlice.actions
 
-export default userSlice.reducer
+export default userSlice.reducer;
