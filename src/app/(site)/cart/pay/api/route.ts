@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     const receipient = {
         name: user.name,
-        address: user.address
+        address: user.email
     }
 
     try {
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       <p style="color: red; font-weight: bold; font-size: 16px"><strong>Total:</strong> &#8358;${currencyFormat(user.total)}</p>
       <hr>
       <h3>Shipping Information:</h3>
-      <p>${user.name}<br> ${user.email} <br> ${user.contact} <br> ${user.contactShippingInfo.address}<br>${user.contactShippingInfo.state}</p>
+      <p>${user.name}<br> ${user.email} <br> ${user.contactShippingInfo.contact} <br> ${user.contactShippingInfo.address}<br>${user.contactShippingInfo.state}</p>
       <p><strong>Estimated Delivery:</strong> ${getDate(3)}</p>
       <a class="btn" href="tracking-link">Track My Order</a>
       <hr>

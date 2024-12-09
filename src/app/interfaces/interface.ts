@@ -54,3 +54,11 @@ export interface infoData{
     state: string;
     address: string;
 }
+
+export interface orderInfo{
+    orderId: string;
+    uid: string;
+    orderDate: string;
+    order: feature[];
+    shippingInformation: infoData;
+}
