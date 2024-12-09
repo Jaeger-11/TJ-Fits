@@ -6,7 +6,7 @@ import { db } from "@/database/config";
 import { useState, useEffect } from "react";
 import { orderInfo } from "@/app/interfaces/interface";
 
-const page = () => {
+const Page = () => {
   const { uid } = useAppSelector((state) => state.user);
   const [orders, setOrders] = useState<orderInfo[]>([]);
 
@@ -37,7 +37,7 @@ const page = () => {
             <section className="w-full md:w-4/5 lg:w-3/5 mx-auto flex flex-col gap-3 my-4">
                 {orders ? orders.map((Order) => {
                   const { orderId, orderDate, shippingInformation, order } = Order
-                  return <section>
+                  return <section key={orderId}>
                     
                   </section>
                 }): 'NO ORDER YET'}
@@ -47,4 +47,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
