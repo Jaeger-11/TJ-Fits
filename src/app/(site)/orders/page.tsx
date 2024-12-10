@@ -40,7 +40,7 @@ const Page = () => {
                     </div>
                     <div className="lg:grid lg:grid-cols-2 mb-2">
                       {order.map((i) => {
-                        return <Order order={i} key={i._id}/>
+                        return <Order order={i} key={i._id} full={false}/>
                       })}
                     </div>
                     <Link href={`/order/${orderId}`} className="text-red-500 text-sm font-semibold hover:underline">SEE DETAILS</Link>

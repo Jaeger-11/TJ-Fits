@@ -71,7 +71,7 @@ const Pay = () => {
 
     const saveOrder = async () => {
         try {
-            await addDoc(collection(db, "orders"), {order:cartItems, uid, shippingInformation: contactShippingInfo, orderDate: getDate()})
+            await addDoc(collection(db, "orders"), {order:cartItems, uid, shippingInformation: contactShippingInfo, orderDate: getDate(), total, deliveryFee: option.cost, subTotal, deliveryMethod: option.name})
         } catch (error) {
             console.log(error)
         }

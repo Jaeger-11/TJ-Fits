@@ -61,4 +61,8 @@ export interface orderInfo{
     orderDate: string;
     order: feature[];
     shippingInformation: infoData;
+    total?: number;
+    subTotal?: number;
+    deliveryFee?: number;
+    deliveryMethod?: string;
 }

@@ -2,7 +2,7 @@ import { feature, orderInfo } from "@/app/interfaces/interface"
 import Image from "next/image"
 import { currencyFormat } from "@/app/sanity-utils"
 
-const Order = (data:{order: feature}) => {
+const Order = (data:{order: feature, full: boolean}) => {
     const { _id, name, price, imageUrl } = data.order
   return (
     <section key={_id} className="flex justify-between border styrene400 text-sm lg:text-sm p-2 border-b">
@@ -18,6 +18,7 @@ const Order = (data:{order: feature}) => {
             </div>
             <div className='flex-1 py-2 lg:flex-auto flex flex-col justify-between'>
                 <h1 className="styrene400 capitalize">{name}</h1>
+                {data.full && <p>Quantity: {data.order.quantity}</p>}
                 <p className='font-semibold'>&#8358;{currencyFormat(price)}</p>
             </div>
         </div>
