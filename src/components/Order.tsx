@@ -13,7 +13,7 @@ const Order = (data:{order: feature}) => {
                 alt={name}
                 width={100}
                 height={100}
-                className='cursor-pointer w-full aspect-square object-cover object-center'
+                className=' w-full aspect-square object-cover object-center'
                 />
             </div>
             <div className='flex-1 py-2 lg:flex-auto flex flex-col justify-between'>

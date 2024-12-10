@@ -1,13 +1,10 @@
 "use client"
-import dynamic from 'next/dynamic'
 import WishlistItem from "@/components/WishlistItem";
 import { feature } from "@/app/interfaces/interface";
 import {useGetData} from "@/components/WishlistData";
 import Back from '@/components/Back';
+import Empty from "@/components/Empty";
 
-// const DynamicHeader = dynamic(() => import('../components/header'), {
-//     ssr: false,
-//   })
 
 export default function Wishlist() {
     const {wishlist} = useGetData();
@@ -18,11 +15,11 @@ export default function Wishlist() {
             <section className="lg:w-4/5 mx-auto lg:bg-white lg:shadow-sm py-4 lg:rounded-sm">
                 <h2 className="text-center styreneBold uppercase lg:text-lg">Your Wishlist</h2>
                 <section className="w-full md:w-4/5 lg:w-3/5 mx-auto flex flex-col gap-3 my-4">
-                    {wishlist ?
+                    {wishlist.length > 0 ?
                         wishlist.map((item: feature) => {
                             return <WishlistItem item={item} key={item._id}/>
                         }) : 
-                        <div className='text-center my-8 capitalize'>No item in wishlist</div>
+                        <Empty/>
                     }
                 </section>
             </section>

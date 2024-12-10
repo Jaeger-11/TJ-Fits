@@ -1,5 +1,8 @@
 import { client } from "../../sanity/lib/client";
 import { searchparams } from "./interfaces/interface";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/database/config";
+import { orderInfo } from '@/app/interfaces/interface';
 
 export const getHeroContent = async () => {
     let query = '*[_type == "herotexts"][0]'
@@ -102,3 +105,32 @@ export const getDate = (additionalDays:number = 0) => {
 
     return `${day} ${month} ${year}`; 
 };
+
+export const GetOrders = async (uid:string) => {
+    const data:orderInfo[] = [];
+    try {
+      const dataSnapshot = await getDocs(query(collection(db,'orders'), where("uid", '==', uid)));
+    dataSnapshot.forEach((doc) => 
+      data.push({orderId: doc.id,...doc.data()} as orderInfo)
+    );
+    } catch (error) {
+      console.log(error);
+    }
+    return data;
+}
+
+export const GetOrder = async (orderId:string) => {
+    let data:orderInfo = {order:[], orderDate:'', orderId: '', uid: '', shippingInformation:{contact:'', alternative:'', address:'', firstName:'', lastName:'', state:''}};
+    try {
+        const docSnapshot = await getDoc(doc(db,'orders', orderId));
+        if (docSnapshot.exists()) {
+            // console.log(docSnapshot.data(), orderId);
+            data = { orderId: docSnapshot.id, ...docSnapshot.data() } as orderInfo;
+          } else {
+            console.log('No such document!');
+          }
+      } catch (error) {
+        console.log(error);
+      }
+      return {...data};
+}

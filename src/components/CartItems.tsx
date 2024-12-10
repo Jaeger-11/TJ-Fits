@@ -3,6 +3,7 @@ import { useAppSelector } from "@/lib/hooks";
 import CartItem from "./CartItem";
 import { currencyFormat } from "@/app/sanity-utils";
 import Link from "next/link";
+import Empty from "./Empty";
 
 const CartItems = () => {
     const { cartItems, subTotal } = useAppSelector((state) => state.cart)
@@ -15,9 +16,7 @@ const CartItems = () => {
                     <CartItem key={item._id} item={item}/>
                 )
             }) : 
-            <div>
-            <h2 className="text-center text-lg my-4 styreneBold">Your Cart Is Empty !!!</h2>
-            </div>
+            <Empty/>
             }
         </section>
         <div className="text-right my-4 mt-8">

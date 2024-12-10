@@ -53,7 +53,7 @@ export async function POST(request: Request) {
                     </div>
                     <div>
                         <h3>${item.name} - (${item.quantity})</h3>
-                        <h3 style="font-weight: bold;">&#8358;${item.price}</h3>
+                        <h3 style="font-weight: bold;">&#8358;${currencyFormat(item.price)}</h3>
                     </div>
                 </div>
                 <hr/>

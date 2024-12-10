@@ -2,7 +2,6 @@ import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-
 const transporter = nodemailer.createTransport({
     // service: 'gmail',
     host: 'smtp.gmail.com',
