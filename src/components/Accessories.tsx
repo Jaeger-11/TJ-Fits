@@ -23,7 +23,7 @@ const Accessories = async () => {
                         whileInView={{opacity:1, y:0, transition:{duration:1}}}
                         key={_id}
                         >
-                        <Link href={`/product/${slug}`} key={_id} className="block opacity-100 lg:opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer">
+                        <Link href={`/product/${slug}`} key={_id} className="block opacity-100 lg:opacity-90 lg:max-w-xs hover:opacity-100 cursor-pointer">
                             <Image 
                             src={imageUrl}
                             alt={name} 

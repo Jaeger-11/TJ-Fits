@@ -23,11 +23,11 @@ const OrderPage = ({params} : {
     }, [uid])
 
   return (
-    <div className="p-4 bg-white lg:bg-inherit">
+    <div className="p-4 bg-white lg:bg-inherit styrene400">
         <Back/>
-        <section className="lg:w-4/5 mx-auto lg:bg-white lg:shadow-sm py-4 lg:rounded-sm">
-        <h2 className=" styreneBold capitalize px-4 pb-2 border-b lg:text-lg">Order details</h2>
-            <div className="flex justify-between items-start mb-2 px-4 pt-2">
+        <section className="lg:w-4/5 mx-auto lg:bg-white lg:shadow-sm lg:py-4 lg:rounded-sm">
+        <h2 className=" styreneBold capitalize lg:px-4 pb-2 border-b lg:text-lg">Order details</h2>
+            <div className="flex justify-between items-start flex-wrap gap-2 mb-2 lg:px-4 pt-2">
                 <div className="text-sm leading-tight flex flex-col gap-0 [&_span]:font-semibold">
                     <p className="">Order No - <span className="uppercase font-semibold text-gray-600">{order.orderId}</span></p>
                     <p>Order Date - <span>{order.orderDate}</span></p>
@@ -38,15 +38,15 @@ const OrderPage = ({params} : {
                 <p className="border bg-green-400 p-1 uppercase text-white text-sm rounded-sm">delivered</p>
             </div>
             
-            <section className="w-full p-4 mx-auto flex flex-col gap-3 my-4">
-                  <section key={order.orderId} className="border p-2">
+            <section className="w-full lg:p-4 mx-auto flex flex-col gap-3 my-4">
+                  <section key={order.orderId} className="lg:border lg:p-2">
                     <div className="lg:grid lg:grid-cols-2 mb-2">
                       {order.order.map((item:feature) => {
                         return <Order key={item._id} order={item} full={true}/>
                       })}
                     </div>
                   </section>
-                  <section className="text-sm">
+                  <section className="text-sm styrene400">
                     <h2 className="styreneBold text-lg">Delivery Information</h2>
                     <p>Delivery Method - {order.deliveryMethod}</p>
                     <p>Delivery Date - {order.orderDate}</p>

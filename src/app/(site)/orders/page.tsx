@@ -26,11 +26,11 @@ const Page = () => {
         <Back/>
         <section className="lg:w-4/5 mx-auto lg:bg-white lg:shadow-sm py-4 lg:rounded-sm">
         <h2 className=" styreneBold uppercase px-4 pb-2 border-b lg:text-lg">Your Orders</h2>
-            <section className="w-full p-4 mx-auto flex flex-col gap-3 my-4">
+            <section className="w-full lg:p-4 mx-auto flex flex-col gap-3 my-4">
                 {orders.length > 0 ? orders.map((item) => {
                   const { orderId, orderDate, order } = item
                   return (<section key={orderId} className="border p-2">
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex justify-between flex-wrap items-center mb-2">
                       <div className="text-sm leading-none flex flex-col gap-0">
                         <p className="">Order <span className="uppercase font-semibold text-gray-600">{orderId}</span></p>
                         <p className="font-semibold">{orderDate}</p>

@@ -24,7 +24,7 @@ const Featured = async () => {
                         whileHover={{scale:1.05}}
                         key={_id}
                         >
-                            <Link href='/products' className="relative block aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-80 shadow-sm hover:opacity-100" key={_id}>
+                            <Link href='/products' className="relative block aspect-[432/532] rounded-md overflow-hidden cursor-pointer transition-all lg:opacity-90 shadow-sm hover:opacity-100" key={_id}>
                                 <Image
                                 src={imageUrl}
                                 alt={name}
