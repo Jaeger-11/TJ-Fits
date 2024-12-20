@@ -30,6 +30,12 @@ export default {
             }
         },
         {
+            title: 'Available Sizes',
+            name: 'sizes',
+            type: 'array',
+            of: [{type: 'string'}]
+        },
+        {
             name: 'price',
             title: 'Product Price',
             type: 'number'

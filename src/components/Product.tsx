@@ -8,8 +8,10 @@ import { addToCart } from "@/lib/features/cartSlice";
 import { useRouter } from "next/navigation";
 import { updateNotification, closeNotification } from "@/lib/features/userSlice";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Product(product:feature) {
+    const pathname = usePathname()
     const router = useRouter()
     const dispatch = useAppDispatch();
     const { uid } = useAppSelector((state) => state.user)
@@ -43,7 +45,7 @@ export default function Product(product:feature) {
         whileInView={{opacity:0.8, y:0, transition:{duration:1}}}
         key={_id} className="product opacity-80 lg:max-w-xs hover:opacity-100 cursor-pointer overflow-hidden">
             <div className="overflow-hidden relative">
-            <Link href={`product/${slug}`}>
+            <Link href={`${pathname.includes('/product/') ? slug : `product/${slug}`}`}>
                 <Image 
                 src={imageUrl}
                 alt={name}
