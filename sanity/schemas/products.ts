@@ -1,3 +1,4 @@
+import { title } from "process";
 import { defineArrayMember } from "sanity";
 
 export default {
@@ -34,6 +35,11 @@ export default {
             name: 'sizes',
             type: 'array',
             of: [{type: 'string'}]
+        },
+        {
+            title: 'Available In Store',
+            name: 'stock',
+            type: 'number'
         },
         {
             name: 'price',

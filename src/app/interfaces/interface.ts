@@ -4,7 +4,8 @@ export interface feature {
     imageUrl: string
     price? : number,
     slug : string,
-    quantity? : number
+    quantity? : number,
+    stock : number
 }
 
 export interface product{
@@ -15,6 +16,7 @@ export interface product{
     description: string;
     slug: string;
     category: string;
+    stock: number
 }
 
 export interface searchparams{

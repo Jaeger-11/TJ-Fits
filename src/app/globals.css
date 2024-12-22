@@ -86,10 +86,10 @@ body{
   fill:  #22c55e;
 }
 .add-arrow{
-  display: none;
+  height: 0;
 }
 .product:hover .add-arrow{
-  @apply block
+  @apply h-max p-1
 }
 .active-filter{
   @apply bg-black text-white border-black

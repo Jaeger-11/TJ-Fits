@@ -26,7 +26,8 @@ export const getAllProducts = async (searchparams:searchparams) => {
         price,
         name,
         "slug": slug.current,
-        "imageUrl": images[0].asset->url
+        "imageUrl": images[0].asset->url,
+        stock
     }`
     const data = await client.fetch(query)
     return data
@@ -57,7 +58,11 @@ export const getFeatured = async () => {
 export const getAccessories = async () => {
     const data = await client.fetch(`
         *[_type == "products" && "Accessories" in categories[]->category]{
-            _id, price, "imageUrl":images[0].asset->url, name, "slug":slug.current
+            _id, 
+            price, 
+            "imageUrl":images[0].asset->url, 
+            name, 
+            "slug":slug.current
         }
     `)
     return data
@@ -66,7 +71,11 @@ export const getAccessories = async () => {
 export const getNewArrivals = async () => {
     const data = await client.fetch(`
         *[_type == "products" && "New Arrivals" in categories[]->category]{
-            _id, price, "imageUrl":images[0].asset->url, name, "slug":slug.current
+            _id, 
+            price, 
+            "imageUrl":images[0].asset->url, 
+            name, 
+            "slug":slug.current
         }
     `)
     return data
@@ -75,7 +84,14 @@ export const getNewArrivals = async () => {
 export const getProduct = async (slug:string) => {
     const data = await client.fetch(`
         *[_type == "products" && slug.current == "${slug}"][0]{
-            _id, price, images, name, "slug":slug.current, description, "category": (categories[]->category)[0]
+            _id, 
+            price, 
+            images, 
+            name, 
+            "slug":slug.current, 
+            description, 
+            "category": (categories[]->category)[0],
+            stock
         }
     `);
     return data
