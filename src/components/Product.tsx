@@ -2,7 +2,7 @@
 import { feature } from "../app/interfaces/interface";
 import Link from "next/link";
 import Image from "next/image";
-import { currencyFormat, patchProductStock } from "../app/sanity-utils";
+import { currencyFormat } from "../app/sanity-utils";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useRouter } from "next/navigation";
