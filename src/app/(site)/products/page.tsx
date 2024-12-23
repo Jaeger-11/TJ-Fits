@@ -37,4 +37,4 @@ export default async function Products(params: {
   )
 }
 
-export const revalidate = 360 
+export const revalidate = 30 

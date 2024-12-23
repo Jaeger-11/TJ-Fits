@@ -69,6 +69,17 @@ const Pay = () => {
         // console.log(data);
     }
 
+    const updateDocument = async (_id:string, quantity:number) => {
+        let response = await fetch('http://localhost:3000/update/api', {
+            method: 'POST',
+            body: JSON.stringify({
+                _id,
+                quantity
+            })
+        })
+        // const data = await response.json();
+    }
+
     const saveOrder = async () => {
         try {
             await addDoc(collection(db, "orders"), {order:cartItems, uid, shippingInformation: contactShippingInfo, orderDate: getDate(), total, deliveryFee: option.cost, subTotal, deliveryMethod: option.name})
@@ -85,6 +96,7 @@ const Pay = () => {
                 dispatch(updateNotification({text:"Payment Successful!", imageUrl: 'show'}))
                 saveOrder();
                 sendUserConfirmation();
+                cartItems.map((item) => updateDocument(item._id, item.quantity || 1))
                 setTimeout(() => {
                     dispatch(closeNotification());
                 }, 2000);

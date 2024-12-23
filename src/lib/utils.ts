@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
     },
-    debug: true,
-    logger: true
+    // debug: true,
+    // logger: true
 } as SMTPTransport.Options)
 
 type SendMailType = {

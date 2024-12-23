@@ -57,10 +57,10 @@ const cartSlice = createSlice({
         increaseQuantity: (state,{payload}) => {
             state.cartItems = state.cartItems.map((item) => {
                 if(item._id === payload){
-                    return {...item, quantity: item.quantity ? item.quantity + 1 : 0}
-                } else {
-                    return item
-                }
+                    if (item.quantity === item.stock) {
+                        return item
+                    } else return {...item, quantity: item.quantity ? item.quantity + 1 : 0}
+                } else return item
             });
             let total = 0;
             state.cartItems.map((item) => {

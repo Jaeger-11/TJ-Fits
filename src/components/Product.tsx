@@ -2,7 +2,7 @@
 import { feature } from "../app/interfaces/interface";
 import Link from "next/link";
 import Image from "next/image";
-import { currencyFormat } from "../app/sanity-utils";
+import { currencyFormat, patchProductStock } from "../app/sanity-utils";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useRouter } from "next/navigation";
@@ -17,10 +17,11 @@ export default function Product(product:feature) {
     const { uid } = useAppSelector((state) => state.user)
     const { cartItems } = useAppSelector((state) => state.cart)
     const {name, _id, imageUrl, price, slug, stock} = product;
+
     const add = () => {
         if(cartItems.filter((item) => item._id === _id).length === 0){
             if(uid.length){
-                dispatch(addToCart({_id,name,price,imageUrl,quantity:1}))
+                dispatch(addToCart({_id,name,price,imageUrl,quantity:1, stock}))
                 dispatch(updateNotification({imageUrl, header:name, text: "Added To Cart"}))
                 setTimeout(() => {
                     dispatch(closeNotification())

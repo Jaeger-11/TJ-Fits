@@ -13,8 +13,8 @@ export default async function NewArrivals() {
                 <main className="flex-1">
                     <section className="lg:grid-cols-5 grid grid-cols-2 gap-4 ">
                         {newArrivals.map((product:feature)=> {
-                            const {name, _id, imageUrl, price, slug} = product;
-                            return <Product key={_id} name={name} _id={_id} imageUrl={imageUrl} price={price} slug={slug}/>
+                            const {name, _id, imageUrl, price, slug, stock} = product;
+                            return <Product key={_id} name={name} _id={_id} imageUrl={imageUrl} price={price} slug={slug}  stock={stock}/>
                         })}
                     </section>
                 </main>
@@ -24,4 +24,4 @@ export default async function NewArrivals() {
     )
 }
 
-export const revalidate = 360
+export const revalidate = 30

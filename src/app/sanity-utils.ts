@@ -3,6 +3,7 @@ import { searchparams } from "./interfaces/interface";
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/config";
 import { orderInfo } from '@/app/interfaces/interface';
+import { token } from "../../sanity/env";
 
 export const getHeroContent = async () => {
     let query = '*[_type == "herotexts"][0]'
@@ -39,7 +40,8 @@ export const getProductsPreview = async () => {
         price,
         name,
         "slug": slug.current
-        "imageUrl": images[0].asset->url
+        "imageUrl": images[0].asset->url,
+        stock
     }`
     const data = await client.fetch(query)
     return data
@@ -62,7 +64,8 @@ export const getAccessories = async () => {
             price, 
             "imageUrl":images[0].asset->url, 
             name, 
-            "slug":slug.current
+            "slug":slug.current,
+            stock
         }
     `)
     return data
@@ -75,7 +78,8 @@ export const getNewArrivals = async () => {
             price, 
             "imageUrl":images[0].asset->url, 
             name, 
-            "slug":slug.current
+            "slug":slug.current,
+            stock
         }
     `)
     return data
@@ -142,11 +146,11 @@ export const GetOrder = async (orderId:string) => {
         if (docSnapshot.exists()) {
             // console.log(docSnapshot.data(), orderId);
             data = { orderId: docSnapshot.id, ...docSnapshot.data() } as orderInfo;
-          } else {
+        } else {
             console.log('No such document!');
-          }
-      } catch (error) {
+        }
+    } catch (error) {
         console.log(error);
-      }
-      return {...data};
+    }
+    return {...data};
 }
